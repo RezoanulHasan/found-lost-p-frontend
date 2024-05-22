@@ -34,3 +34,31 @@ export type IGenericErrorMessage = {
   path?: string | number;
   message: string;
 };
+
+interface User {
+  id: any;
+  name: string;
+  email: string;
+  role: string; // You might want to define an enum for roles
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface IItem {
+  id: any;
+  userId: string;
+  category: string;
+  lostItemName?: string;
+  foundItemName?: string;
+  description: string;
+  location: string;
+  date: string; // You might want to use Date type or define a custom date format
+  image?: string;
+  phoneNumber?: string;
+  email?: string;
+  status: string; // You might want to define an enum for statuses
+  createdAt: string;
+  updatedAt: string;
+  user: User;
+  meta?: IMeta;
+}

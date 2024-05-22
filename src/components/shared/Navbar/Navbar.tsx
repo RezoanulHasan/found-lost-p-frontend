@@ -3,7 +3,6 @@
 //import { User } from "next-auth";
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import AuthButton from "../AuthButton/AuthButton";
 
 const Navbar = () => {
   const AuthButton = dynamic(() => import("../AuthButton/AuthButton"), {
@@ -23,7 +22,7 @@ const Navbar = () => {
         <Link href="/support">Support</Link>
       </li>
       <li>
-        <Link href="/dashboard">Dashboard</Link>
+        <Link href="/dashboard">My Profile</Link>
       </li>
     </>
   );

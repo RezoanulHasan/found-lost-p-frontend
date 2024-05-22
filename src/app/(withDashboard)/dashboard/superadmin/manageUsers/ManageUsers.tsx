@@ -13,8 +13,9 @@ import {
 } from "@/redux/features/auth/userApi";
 import { useDebounced } from "@/redux/helper";
 import { motion } from "framer-motion";
-import galleryAnimation from "@/components/Hooks/GallerySection";
+
 import ManageUsersLoading from "./loading";
+import { galleryAnimation } from "@/components/Hooks/GallerySection";
 
 const ManageUsers: FC = () => {
   useTitle("All users");

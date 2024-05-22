@@ -11,14 +11,6 @@ export const foundApi = baseApi.injectEndpoints({
       }),
       providesTags: [tagTypes.found], // Use tag for found items
     }),
-    getSingleByUserFound: build.query({
-      query: (arg: Record<string, any>) => ({
-        url: "/found-items/user-found",
-        method: "GET",
-        params: arg,
-      }),
-      providesTags: [tagTypes.found], // Use tag for found items
-    }),
     createFoundItem: build.mutation({
       query: (newFoundItem) => ({
         url: "/found-items",
@@ -46,7 +38,6 @@ export const foundApi = baseApi.injectEndpoints({
 });
 
 export const {
-  useGetSingleByUserFoundQuery,
   useGetAllFoundQuery,
   useCreateFoundItemMutation,
   useDeleteFoundItemMutation,

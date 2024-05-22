@@ -11,14 +11,6 @@ export const lostApi = baseApi.injectEndpoints({
       }),
       providesTags: [tagTypes.lost],
     }),
-    getSingleByUserLost: build.query({
-      query: (arg: Record<string, any>) => ({
-        url: "/lost-items/user-lost",
-        method: "GET",
-        params: arg,
-      }),
-      providesTags: [tagTypes.lost],
-    }),
     createLostItem: build.mutation({
       query: (newLostItem) => ({
         url: "/lost-items",
@@ -46,7 +38,6 @@ export const lostApi = baseApi.injectEndpoints({
 });
 
 export const {
-  useGetSingleByUserLostQuery,
   useGetAllLostQuery,
   useCreateLostItemMutation,
   useDeleteLostItemMutation,

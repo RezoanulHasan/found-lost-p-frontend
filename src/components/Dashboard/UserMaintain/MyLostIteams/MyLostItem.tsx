@@ -2,16 +2,17 @@
 
 import Container from "@/components/shared/Container/Container";
 import React, { useEffect, useState } from "react";
-import { useGetSingleByUserLostQuery } from "@/redux/features/auth/lostApi";
+
 import { IItem } from "@/types/common";
 import { motion } from "framer-motion";
 import SectionTitle from "@/components/shared/SectionTitle/SectionTitle";
 import { galleryAnimation } from "@/components/Hooks/GallerySection";
+import { useGetSingleByUserLostQuery } from "@/redux/features/MyLostFoundClamApi ";
 
 const DEFAULT_IMAGE_URL =
   "https://banner2.cleanpng.com/20180704/sgs/kisspng-computer-icons-action-item-icon-design-clip-art-5b3d4ff37b7642.7302069315307448195057.jpg";
 
-const AllLostReport: React.FC = () => {
+const MyLostItem: React.FC = () => {
   const {
     data: response,
     isError,
@@ -103,4 +104,4 @@ const AllLostReport: React.FC = () => {
   );
 };
 
-export default AllLostReport;
+export default MyLostItem;

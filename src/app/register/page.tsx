@@ -23,6 +23,7 @@ export type UserData = {
   userImage: FileList; // Use FileList instead of File for image selection
   password: string;
   profile: UserBio;
+  phoneNumber: string;
 };
 
 const RegisterPage = () => {
@@ -46,7 +47,7 @@ const RegisterPage = () => {
 
         if (res.success) {
           Swal.fire({
-            title: `Registration Successful, ${data.name}!`,
+            title: `Registration Successful, ${data?.name}!`,
             text: res.message,
             icon: "success",
           }).then(() => {
@@ -102,6 +103,18 @@ const RegisterPage = () => {
                   type="email"
                   {...register("email")}
                   placeholder="Email"
+                  className="input input-bordered"
+                  required
+                />
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">PhoneNumber</span>
+                </label>
+                <input
+                  type="text"
+                  {...register("phoneNumber")}
+                  placeholder="PhoneNumber"
                   className="input input-bordered"
                   required
                 />

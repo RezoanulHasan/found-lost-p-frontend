@@ -4,6 +4,7 @@ export enum tagTypes {
   lost = "lost-items",
   found = "found",
   my = "my",
+  claim = "claim",
 }
 
 export const tagTypesList = [
@@ -12,4 +13,5 @@ export const tagTypesList = [
   tagTypes.lost,
   tagTypes.found,
   tagTypes.my,
+  tagTypes.claim,
 ];

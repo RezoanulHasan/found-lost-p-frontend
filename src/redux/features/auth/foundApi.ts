@@ -19,13 +19,14 @@ export const foundApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: [tagTypes.found], // Use tag for found items
     }),
-    deleteFoundItem: build.mutation({
+    deleteFoundItem: build.mutation<void, string>({
       query: (foundItemId) => ({
         url: `/found-items/${foundItemId}`,
         method: "DELETE",
       }),
       invalidatesTags: [tagTypes.found], // Use tag for found items
     }),
+
     updateFoundInfo: build.mutation({
       query: ({ foundItemId, updatedFoundItemData }) => ({
         url: `/found-items/${foundItemId}`,

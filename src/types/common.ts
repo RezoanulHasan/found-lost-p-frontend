@@ -46,7 +46,7 @@ interface User {
 
 export interface IItem {
   id: any;
-  userId: string;
+  userId?: string;
   category: string;
   lostItemName?: string;
   foundItemName?: string;
@@ -57,8 +57,10 @@ export interface IItem {
   phoneNumber?: string;
   email?: string;
   status: string; // You might want to define an enum for statuses
-  createdAt: string;
-  updatedAt: string;
+  createdAt?: string;
+  updatedAt?: string;
   user: User;
   meta?: IMeta;
+  item?: any;
+  name?: string;
 }

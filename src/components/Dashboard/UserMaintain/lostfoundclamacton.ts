@@ -1,15 +1,15 @@
 // src/api/userActions.js
 "use server";
-import {  tagTypesList } from "@/redux/tag-types";
-import { cookies } from "next/headers";
+import { tagTypesList } from "@/redux/tag-types";
+import { IItem } from "@/types/common";
 
-export const updateUserInformation = async (
-  userId: any,
-  updatedUserData: { name: string; email: string; age: string; bio: string }
+export const updateLostItemInformation = async (
+  ItemId: any,
+  updatedItemData: IItem
 ) => {
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/my-profile/${userId}`,
+      `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/found-items/${ItemId}`,
       {
         next: {
           tags: tagTypesList,
@@ -17,9 +17,8 @@ export const updateUserInformation = async (
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
-          Authorization: cookies().get("token")?.value || "",
         },
-        body: JSON.stringify(updatedUserData),
+        body: JSON.stringify(updatedItemData),
         cache: "no-store",
       }
     );
@@ -34,10 +33,13 @@ export const updateUserInformation = async (
   }
 };
 
-export const updateUserProfilePhoto = async (userId: any, imageUrl: any) => {
+export const updateFoundItemInformation = async (
+  ItemId: any,
+  updatedItemData: IItem
+) => {
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/my-profile/${userId}`,
+      `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/my/found${ItemId}`,
       {
         next: {
           tags: tagTypesList,
@@ -45,19 +47,18 @@ export const updateUserProfilePhoto = async (userId: any, imageUrl: any) => {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
-          Authorization: cookies().get("token")?.value || "",
         },
-        body: JSON.stringify({ userImage: imageUrl }), // Assuming userImage is the field to update
+        body: JSON.stringify(updatedItemData),
         cache: "no-store",
       }
     );
 
     if (!response.ok) {
-      throw new Error("Failed to update user profile photo.");
+      throw new Error("Failed to update user information.");
     }
 
     return response.json(); // Assuming the server returns updated user data
   } catch (error) {
-    throw new Error("An error occurred while updating user profile photo.");
+    throw new Error("An error occurred while updating user information.");
   }
 };

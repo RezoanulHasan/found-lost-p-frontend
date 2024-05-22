@@ -3,7 +3,7 @@
 import React, { useState, useEffect, FC } from "react";
 import { useGetSingleUserQuery } from "@/redux/features/auth/profileApi";
 import { motion } from "framer-motion";
-import galleryAnimation from "@/components/Hooks/GallerySection";
+
 import Spinner from "@/components/shared/Spinner/Spinner";
 
 import { User } from "@/redux/features/auth/userApi";
@@ -18,6 +18,7 @@ import {
 import { AiOutlineEdit } from "react-icons/ai";
 import Container from "@/components/shared/Container/Container";
 import useTitle from "@/components/Hooks/useTitle";
+import { galleryAnimation } from "@/components/Hooks/GallerySection";
 
 export const UserInfoPage: FC = () => {
   useTitle("Personal Info");

@@ -1,13 +1,12 @@
 import { DrawerItem, UserRole } from "@/types";
 import EditIcon from "@mui/icons-material/Edit";
-//icons
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import GroupIcon from "@mui/icons-material/Group";
-//import MedicalInformationIcon from "@mui/icons-material/MedicalInformation";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import ReviewsIcon from "@mui/icons-material/Reviews";
-//import AirlineSeatIndividualSuiteIcon from "@mui/icons-material/AirlineSeatIndividualSuite";
-//import TryIcon from "@mui/icons-material/Try";
+import SearchIcon from "@mui/icons-material/Search";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import AssignmentTurnedInIcon from "@mui/icons-material/AssignmentTurnedIn";
 import { USER_ROLE } from "@/contants/role";
 import PersonIcon from "@mui/icons-material/Person";
 import KeyIcon from "@mui/icons-material/Key";
@@ -71,9 +70,19 @@ export const drawerItems = (role: UserRole): DrawerItem[] => {
         },
 
         {
-          title: "Appointments",
-          path: `${role}/appointment`,
-          icon: CalendarMonthIcon,
+          title: "lostItems",
+          path: `${role}/lostItems`,
+          icon: SearchIcon,
+        },
+        {
+          title: "foundItems",
+          path: `${role}/foundItems`,
+          icon: CheckCircleIcon,
+        },
+        {
+          title: "clamItems",
+          path: `${role}/clamItems`,
+          icon: AssignmentTurnedInIcon,
         }
       );
       break;

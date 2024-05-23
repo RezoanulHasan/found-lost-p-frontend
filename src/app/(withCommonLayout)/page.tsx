@@ -6,19 +6,20 @@ import Container from "@/components/shared/Container/Container";
 import AboutUs from "./../../components/UI/HomePage/HeroSection/AboutUs";
 import Different from "@/components/UI/HomePage/HeroSection/Different";
 import Banner from "@/components/UI/HomePage/HeroSection/Banner";
+import ParallaxSection from "@/components/UI/HomePage/ParallaxSection";
 
 const HomePage = () => {
   return (
     <>
+      <Banner></Banner>
       <Container>
-        <Banner></Banner>
         <LostReport></LostReport>
 
         <HeroSection />
         <FoundReport></FoundReport>
         <Tips></Tips>
         <AboutUs></AboutUs>
-
+        <ParallaxSection></ParallaxSection>
         <Different></Different>
       </Container>
     </>

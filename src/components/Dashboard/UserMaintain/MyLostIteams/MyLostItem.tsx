@@ -20,7 +20,7 @@ const DEFAULT_IMAGE_URL =
   "https://banner2.cleanpng.com/20180704/sgs/kisspng-computer-icons-action-item-icon-design-clip-art-5b3d4ff37b7642.7302069315307448195057.jpg";
 
 const MyLostItem: React.FC = () => {
-  useTitle("My Lost Items");
+  useTitle("My Lost Report");
 
   const {
     data: response,
@@ -252,7 +252,7 @@ const MyLostItem: React.FC = () => {
           </div>
         ) : (
           <div className="text-center  mt-40  text-3xl  font-bold ">
-            No items found. You are not adding any report
+            No Report Found. You Are Not Adding Any Lost Info Report
           </div>
         )}
       </div>

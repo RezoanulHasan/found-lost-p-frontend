@@ -84,7 +84,7 @@ const LostReport: React.FC = () => {
             whileHover="hover"
             className="btn-lg btn btn-active btn-accent text-white"
           >
-            All LostReport Items
+            See all Lost Report
           </motion.button>
         </Link>
 
@@ -94,7 +94,7 @@ const LostReport: React.FC = () => {
             whileHover="hover"
             className="btn-lg btn btn-active btn-accent text-white"
           >
-            ADD Report Items
+            Report Lost Item
           </motion.button>
         </Link>
       </div>

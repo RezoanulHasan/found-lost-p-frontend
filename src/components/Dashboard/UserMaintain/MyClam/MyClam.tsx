@@ -151,7 +151,7 @@ const MyClam: React.FC = () => {
   return (
     <Container>
       <div className="mt-10">
-        <SectionTitle subHeading="MY Clam Info" heading="Clam Report" />
+        <SectionTitle subHeading="My Clam Info" heading="Clam Report" />
         {items?.length > 0 ? (
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 ">
             {items?.map((item) => (

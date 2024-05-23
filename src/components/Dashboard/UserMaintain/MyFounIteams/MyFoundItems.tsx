@@ -32,7 +32,7 @@ const MyFoundItems: React.FC = () => {
 
   const [items, setItems] = useState<IItem[]>([]);
 
-  useTitle("My Found Items");
+  useTitle("My Found Report");
 
   const [deleteUserMutation] = useDeleteFoundItemMutation();
 
@@ -238,7 +238,7 @@ const MyFoundItems: React.FC = () => {
           </div>
         ) : (
           <div className="text-center  mt-40  text-3xl  font-bold ">
-            No items found. You are not adding any report
+            No Report Found. You Are Not Adding Any Found Info Report
           </div>
         )}
       </div>

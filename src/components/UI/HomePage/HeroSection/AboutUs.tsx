@@ -70,7 +70,7 @@ const AboutUs: React.FC = () => {
             whileHover="hover"
             className="btn-lg btn btn-active btn-accent text-white"
           >
-            All LostReport Items
+            About More Us
           </motion.button>
         </Link>
       </div>

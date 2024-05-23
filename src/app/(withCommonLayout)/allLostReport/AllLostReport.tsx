@@ -104,7 +104,9 @@ const AllLostReport: React.FC = () => {
                 </div>
               ))
           ) : (
-            <div>No data available</div>
+            <div className="text-center  mt-40  text-3xl  font-bold ">
+              No Report Found. No Data About Adding Any Lost Info Report
+            </div>
           )}
         </div>
       </div>

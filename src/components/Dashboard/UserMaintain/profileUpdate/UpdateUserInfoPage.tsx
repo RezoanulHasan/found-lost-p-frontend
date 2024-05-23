@@ -7,6 +7,7 @@ import { imageUpload } from "@/components/Hooks/imageUpoold";
 import Container from "@/components/shared/Container/Container";
 import UpdateProfileLoading from "./loading";
 import { updateUserInformation, updateUserProfilePhoto } from "./action";
+import useTitle from "@/components/Hooks/useTitle";
 
 interface User {
   id: any;
@@ -18,6 +19,7 @@ interface User {
 }
 
 const UpdateUserInfoPage: React.FC = () => {
+  useTitle("Update Info");
   const {
     data: response,
     error,

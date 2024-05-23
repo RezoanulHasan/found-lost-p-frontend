@@ -14,7 +14,7 @@ const DEFAULT_IMAGE_URL =
   "https://banner2.cleanpng.com/20180704/sgs/kisspng-computer-icons-action-item-icon-design-clip-art-5b3d4ff37b7642.7302069315307448195057.jpg";
 
 const AllFoundReport: React.FC = () => {
-  useTitle("All Lost Report");
+  useTitle("All Found Report");
   const {
     data: response,
     isError,
@@ -41,7 +41,7 @@ const AllFoundReport: React.FC = () => {
   return (
     <Container>
       <div className="mt-32">
-        <SectionTitle subHeading="All Lost Report" heading="Lost Report" />
+        <SectionTitle subHeading="All Found Report" heading="Found Report" />
         <div className="grid grid-cols-1  gap-4">
           {items.length > 0 ? (
             items
@@ -105,7 +105,9 @@ const AllFoundReport: React.FC = () => {
                 </div>
               ))
           ) : (
-            <div>No data available</div>
+            <div className="text-center  mt-40  text-3xl  font-bold ">
+              No Report Found. No Data About Adding Any Found Info Report
+            </div>
           )}
         </div>
       </div>

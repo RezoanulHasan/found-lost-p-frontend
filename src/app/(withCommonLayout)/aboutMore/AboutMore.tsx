@@ -1,6 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 "use client";
 
+import useTitle from "@/components/Hooks/useTitle";
 import SectionTitle from "@/components/shared/SectionTitle/SectionTitle";
 import React from "react";
 
@@ -16,6 +17,7 @@ import {
   FaMoneyBillWave,
 } from "react-icons/fa";
 const AboutMore = () => {
+  useTitle("About US");
   return (
     <div className="bg-white py-16">
       <div className="container mx-auto px-4">

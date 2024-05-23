@@ -48,13 +48,12 @@ const tips = [
   },
 ];
 
-const Tips = () => {
+const Tips: React.FC = () => {
   return (
     <>
       <SectionTitle subHeading="Tips for Reporting Items" heading="Tips" />
-      <section className="py-12 bg-white">
+      <section className="py-4 bg-white">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-6">Tips for Reporting Items</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {tips.map((tip, index) => (
               <div

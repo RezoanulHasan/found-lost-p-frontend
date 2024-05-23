@@ -16,7 +16,7 @@ const Navbar = () => {
       </li>
 
       <li>
-        <Link href="/about">About Us</Link>
+        <Link href="/aboutMore">About Us</Link>
       </li>
       <li>
         <Link href="/support">Support</Link>
@@ -57,7 +57,7 @@ const Navbar = () => {
             </ul>
           </div>
           <Link href="/" className="btn btn-ghost text-xl">
-            LostLocator
+            Lost<span className="text-teal-600 ">Locator</span>
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">

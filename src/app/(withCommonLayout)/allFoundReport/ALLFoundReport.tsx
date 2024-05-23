@@ -2,23 +2,24 @@
 
 import Container from "@/components/shared/Container/Container";
 import React, { useEffect, useState } from "react";
-import { useGetAllLostQuery } from "@/redux/features/auth/lostApi";
+
 import { IItem } from "@/types/common";
 import { motion } from "framer-motion";
 import SectionTitle from "@/components/shared/SectionTitle/SectionTitle";
 import { galleryAnimation } from "@/components/Hooks/GallerySection";
 import useTitle from "@/components/Hooks/useTitle";
+import { useGetAllFoundQuery } from "@/redux/features/auth/foundApi";
 
 const DEFAULT_IMAGE_URL =
   "https://banner2.cleanpng.com/20180704/sgs/kisspng-computer-icons-action-item-icon-design-clip-art-5b3d4ff37b7642.7302069315307448195057.jpg";
 
-const AllLostReport: React.FC = () => {
+const AllFoundReport: React.FC = () => {
   useTitle("All Lost Report");
   const {
     data: response,
     isError,
     isLoading,
-  } = useGetAllLostQuery({
+  } = useGetAllFoundQuery({
     sortBy: "createdAt",
     sortOrder: "asc",
   });
@@ -64,7 +65,7 @@ const AllLostReport: React.FC = () => {
                   <div className="flex flex-col md:flex-row w-full">
                     <div className="p-4 md:w-2/3">
                       <h3 className="text-2xl font-bold text-teal-600">
-                        {item.lostItemName}
+                        {item.foundItemName}
                       </h3>
                       <p className="mt-2">
                         <strong>Category:</strong> {item.category}
@@ -112,4 +113,4 @@ const AllLostReport: React.FC = () => {
   );
 };
 
-export default AllLostReport;
+export default AllFoundReport;

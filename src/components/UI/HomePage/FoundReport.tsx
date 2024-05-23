@@ -1,21 +1,22 @@
 "use client";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import SectionTitle from "./../../../shared/SectionTitle/SectionTitle";
-import { useGetAllLostQuery } from "@/redux/features/auth/lostApi";
+
 import { IItem } from "@/types/common";
 import { motion } from "framer-motion";
 import {
   buttonAnimation,
   galleryAnimation,
 } from "@/components/Hooks/GallerySection";
+import SectionTitle from "@/components/shared/SectionTitle/SectionTitle";
+import { useGetAllFoundQuery } from "@/redux/features/auth/foundApi";
 
-const LostReport: React.FC = () => {
+const FoundReport: React.FC = () => {
   const {
     data: response,
     isError,
     isLoading,
-  } = useGetAllLostQuery({
+  } = useGetAllFoundQuery({
     sortBy: "createdAt",
     sortOrder: "asc",
   });
@@ -44,7 +45,7 @@ const LostReport: React.FC = () => {
       <div className="grid grid-cols-1 sm:grid-cols-3   md:grid-cols-4 lg:grid-cols-5 gap-4">
         {items?.map((item: IItem) => (
           <div key={item?.id} className="overflow-hidden rounded-lg shadow-lg">
-            {item?.image ? (
+            {item.image ? (
               <motion.img
                 loading="lazy"
                 variants={galleryAnimation}
@@ -68,7 +69,7 @@ const LostReport: React.FC = () => {
             )}
             <div className="px-4 py-2">
               <h3 className="text-2xl font-bold text-teal-600">
-                {item.lostItemName}
+                {item.foundItemName}
               </h3>
               <p className="mt-2">{item.description}</p>
               {/* Render other fields as needed */}
@@ -78,7 +79,7 @@ const LostReport: React.FC = () => {
       </div>
 
       <div className="card-actions   flex  justify-center mt-10">
-        <Link href="/allLostReport" passHref>
+        <Link href="/allFoundReport" passHref>
           <motion.button
             variants={buttonAnimation}
             whileHover="hover"
@@ -88,7 +89,7 @@ const LostReport: React.FC = () => {
           </motion.button>
         </Link>
 
-        <Link href="/dashboard/addLostItems" passHref>
+        <Link href="/dashboard/addFoundItems" passHref>
           <motion.button
             variants={buttonAnimation}
             whileHover="hover"
@@ -102,4 +103,4 @@ const LostReport: React.FC = () => {
   );
 };
 
-export default LostReport;
+export default FoundReport;

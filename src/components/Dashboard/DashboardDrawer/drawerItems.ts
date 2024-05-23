@@ -10,6 +10,9 @@ import AssignmentTurnedInIcon from "@mui/icons-material/AssignmentTurnedIn";
 import { USER_ROLE } from "@/contants/role";
 import PersonIcon from "@mui/icons-material/Person";
 import KeyIcon from "@mui/icons-material/Key";
+import AddBoxIcon from "@mui/icons-material/AddBox";
+import ReportIcon from "@mui/icons-material/Report";
+
 export const drawerItems = (role: UserRole): DrawerItem[] => {
   const roleMenus: DrawerItem[] = [];
   const defaultMenus = [
@@ -27,6 +30,18 @@ export const drawerItems = (role: UserRole): DrawerItem[] => {
       title: "Change Password",
       path: `change-password`,
       icon: KeyIcon,
+    },
+
+    {
+      title: "addFoundItems",
+      path: `addFoundItems`,
+      icon: AddBoxIcon,
+    },
+
+    {
+      title: "addLostItems",
+      path: `/addLostItems`,
+      icon: ReportIcon,
     },
   ];
   switch (role) {

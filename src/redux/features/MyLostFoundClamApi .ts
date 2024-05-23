@@ -21,7 +21,7 @@ export const MyLostFoundClamApi = baseApi.injectEndpoints({
     }),
     getSingleByUserClam: build.query({
       query: (arg: Record<string, any>) => ({
-        url: "/my/clam",
+        url: "/my/claim",
         method: "GET",
         params: arg,
       }),

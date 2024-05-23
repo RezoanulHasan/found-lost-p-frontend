@@ -15,6 +15,7 @@ import { useGetSingleByUserLostQuery } from "@/redux/features/MyLostFoundClamApi
 import useTitle from "@/components/Hooks/useTitle";
 import { FaTrashAlt, FaEdit } from "react-icons/fa";
 import { useDeleteLostItemMutation } from "@/redux/features/auth/lostApi";
+import { tagTypesList } from "@/redux/tag-types";
 const DEFAULT_IMAGE_URL =
   "https://banner2.cleanpng.com/20180704/sgs/kisspng-computer-icons-action-item-icon-design-clip-art-5b3d4ff37b7642.7302069315307448195057.jpg";
 
@@ -68,7 +69,7 @@ const MyLostItem: React.FC = () => {
 
   const handleUpdateClick = (item: IItem) => {
     Swal.fire({
-      title: "Update User",
+      title: "Lost Item Info",
       html: `
       <h1 class=" front-bold text-xl">Update Item info</h1>
      
@@ -86,7 +87,7 @@ const MyLostItem: React.FC = () => {
         
         <h1 class="text-teal-600 front-bold ">Phone Number</h1>
         <input type="tel" id="phoneNumber" class="swal2-input" placeholder="Phone Number" value="${item.phoneNumber}">
-        <h1 class="text-teal-600 front-bold ">Add description</h1>
+        <h1 class="text-teal-600 front-bold ">Description</h1>
         <textarea id="description" class="swal2-textarea" placeholder="Description">${item.description}</textarea>
         <h1 class="text-teal-600 front-bold ">Update Date</h1>
         <input type="date" id="date" class="swal2-input" placeholder="Date" value="${item.date}">
@@ -125,6 +126,9 @@ const MyLostItem: React.FC = () => {
           const response = await fetch(
             `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/lost-items/${item.id}`,
             {
+              next: {
+                tags: tagTypesList,
+              },
               method: "PUT",
               headers: {
                 "Content-Type": "application/json",
@@ -168,11 +172,11 @@ const MyLostItem: React.FC = () => {
     <Container>
       <div className="mt-5">
         <SectionTitle subHeading="MY LOST ITEMS" heading="Lost Report" />
-        {items.length > 0 ? (
+        {items?.length > 0 ? (
           <div className="grid grid-cols-1 gap-4">
-            {items.map((item: IItem) => (
+            {items?.map((item: IItem) => (
               <div
-                key={item.id}
+                key={item?.id}
                 className="flex flex-col md:flex-row overflow-hidden rounded-lg shadow-lg"
               >
                 <motion.img
@@ -247,7 +251,9 @@ const MyLostItem: React.FC = () => {
             ))}
           </div>
         ) : (
-          <div className="text-center">No items found.</div>
+          <div className="text-center  mt-40  text-3xl  font-bold ">
+            No items found. You are not adding any report
+          </div>
         )}
       </div>
     </Container>

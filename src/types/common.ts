@@ -63,4 +63,20 @@ export interface IItem {
   meta?: IMeta;
   item?: any;
   name?: string;
+  lostDate?: string;
+  foundItemId?: string;
+  distinguishingFeatures?: string;
+  foundItem?: IFoundItem;
+}
+export interface IFoundItem {
+  image?: string;
+  phoneNumber?: string;
+  email?: string;
+  description?: string;
+  location?: string;
+  category: string;
+  id?: any;
+  userId?: string;
+  lostItemName?: string;
+  foundItemName?: string;
 }

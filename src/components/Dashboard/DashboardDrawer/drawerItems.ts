@@ -2,7 +2,6 @@ import { DrawerItem, UserRole } from "@/types";
 import EditIcon from "@mui/icons-material/Edit";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import GroupIcon from "@mui/icons-material/Group";
-import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import ReviewsIcon from "@mui/icons-material/Reviews";
 import SearchIcon from "@mui/icons-material/Search";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
@@ -12,7 +11,7 @@ import PersonIcon from "@mui/icons-material/Person";
 import KeyIcon from "@mui/icons-material/Key";
 import AddBoxIcon from "@mui/icons-material/AddBox";
 import ReportIcon from "@mui/icons-material/Report";
-
+import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
 export const drawerItems = (role: UserRole): DrawerItem[] => {
   const roleMenus: DrawerItem[] = [];
   const defaultMenus = [
@@ -33,15 +32,21 @@ export const drawerItems = (role: UserRole): DrawerItem[] => {
     },
 
     {
-      title: "addFoundItems",
+      title: "AddFoundItems",
       path: `addFoundItems`,
       icon: AddBoxIcon,
     },
 
     {
-      title: "addLostItems",
-      path: `/addLostItems`,
+      title: "AddLostItems",
+      path: `addLostItems`,
       icon: ReportIcon,
+    },
+
+    {
+      title: "AddClaimItems",
+      path: `addClaimItems`,
+      icon: VerifiedUserIcon,
     },
   ];
   switch (role) {
@@ -56,6 +61,12 @@ export const drawerItems = (role: UserRole): DrawerItem[] => {
           title: "Manage Users",
           path: `${role}/manageUsers`,
           icon: GroupIcon,
+        },
+
+        {
+          title: "Activity Monitoring",
+          path: `${role}/motion`,
+          icon: ReviewsIcon,
         }
       );
       break;
@@ -85,17 +96,17 @@ export const drawerItems = (role: UserRole): DrawerItem[] => {
         },
 
         {
-          title: "lostItems",
+          title: "MyLosTItem",
           path: `${role}/lostItems`,
           icon: SearchIcon,
         },
         {
-          title: "foundItems",
+          title: "MyFoundItems",
           path: `${role}/foundItems`,
           icon: CheckCircleIcon,
         },
         {
-          title: "clamItems",
+          title: "MyClamItems",
           path: `${role}/clamItems`,
           icon: AssignmentTurnedInIcon,
         }

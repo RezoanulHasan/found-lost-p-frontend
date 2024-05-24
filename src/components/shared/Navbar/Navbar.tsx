@@ -1,14 +1,14 @@
 "use client";
-
+import { motion, useScroll } from "framer-motion";
 //import { User } from "next-auth";
 import dynamic from "next/dynamic";
 import Link from "next/link";
-
-const Navbar = () => {
+import "./scroll.css";
+const Navbar: React.FC = () => {
   const AuthButton = dynamic(() => import("../AuthButton/AuthButton"), {
     ssr: false,
   });
-
+  const { scrollYProgress } = useScroll();
   const navOptions = (
     <>
       <li>
@@ -30,7 +30,12 @@ const Navbar = () => {
   //  <div className="navbar bg-base-100  shadow-sm     mx-auto ">
   return (
     <div>
-      <div className="navbar fixed z-100 top-0 bg-opacity-30 bg-base-100  shadow-sm     mx-auto">
+      <motion.div
+        style={{ scaleX: scrollYProgress }}
+        className=" progress-bar   "
+      />
+
+      <div className="navbar fixed z-100 top-0 bg-opacity-30 bg-base-100  shadow-sm    mx-auto">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">

@@ -8,6 +8,7 @@ import Container from "@/components/shared/Container/Container";
 import UpdateProfileLoading from "./loading";
 import { updateUserInformation, updateUserProfilePhoto } from "./action";
 import useTitle from "@/components/Hooks/useTitle";
+import SectionTitle from "@/components/shared/SectionTitle/SectionTitle";
 
 interface User {
   id: any;
@@ -119,7 +120,8 @@ const UpdateUserInfoPage: React.FC = () => {
       {isLoading && <UpdateProfileLoading />}
       {!isLoading || (!user && <div>Error fetching data</div>)}
       {!isLoading && user && (
-        <div className="bg-gray-100 flex flex-col min-h-screen justify-center items-center py-12 px-4 sm:px-6 lg:px-8">
+        <div className=" flex flex-col min-h-screen justify-center items-center py-2 px-4 sm:px-6 lg:px-8">
+          <SectionTitle subHeading="Update you profile" heading="Update Data" />
           <div className="max-w-md w-full space-y-8">
             <div className="bg-white p-8 rounded-lg shadow-lg">
               <div className="flex items-center justify-center">
@@ -151,7 +153,7 @@ const UpdateUserInfoPage: React.FC = () => {
                 />
                 <div>
                   <button
-                    className="bg-rose-500 w-full rounded-md py-3 text-white"
+                    className="bg-teal-500 text-white w-full rounded-md py-3 "
                     onClick={handleUpdateProfilePhoto}
                     type="button"
                   >
@@ -223,7 +225,7 @@ const UpdateUserInfoPage: React.FC = () => {
                 </div>
                 <div>
                   <button
-                    className="bg-rose-500 w-full rounded-md py-3 text-white"
+                    className="bg-teal-500   w-full rounded-md py-3 text-white"
                     type="submit"
                   >
                     {isLoading ? "Loading..." : "Update"}

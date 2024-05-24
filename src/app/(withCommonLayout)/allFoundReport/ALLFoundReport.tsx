@@ -43,13 +43,13 @@ const AllFoundReport: React.FC = () => {
       <div className="mt-32">
         <SectionTitle subHeading="All Found Report" heading="Found Report" />
         <div className="grid grid-cols-1  gap-4">
-          {items.length > 0 ? (
+          {items?.length > 0 ? (
             items
               .slice()
               .reverse()
               .map((item: IItem) => (
                 <div
-                  key={item.id}
+                  key={item?.id}
                   className="flex flex-col md:flex-row overflow-hidden rounded-lg shadow-lg"
                 >
                   <motion.img

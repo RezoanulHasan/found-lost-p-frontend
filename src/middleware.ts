@@ -10,6 +10,7 @@ const commonPrivateRoutes = [
   "/dashboard",
   "/dashboard/addLostItems",
   "/dashboard/addFoundItems",
+  "/dashboard/addClaimItems",
   "/dashboard/change-password",
 ];
 const roleBasedPrivateRoutes = {

@@ -65,6 +65,7 @@ const AddFoundItem: React.FC = () => {
   };
   return (
     <>
+      {" "}
       <Container>
         <SectionTitle subHeading="ADD YOur Found Item " heading="Add Report" />
         <div className="mt-2 flex justify-center">
@@ -204,7 +205,7 @@ const AddFoundItem: React.FC = () => {
               </div>
             </form>
           </div>
-        </div>
+        </div>{" "}
       </Container>
     </>
   );

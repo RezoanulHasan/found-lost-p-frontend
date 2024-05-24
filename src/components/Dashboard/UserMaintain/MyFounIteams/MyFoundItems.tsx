@@ -162,86 +162,92 @@ const MyFoundItems: React.FC = () => {
         <SectionTitle subHeading="MY FOUND ITEMS" heading="Found Report" />
         {items?.length > 0 ? (
           <div className="grid grid-cols-1 gap-4">
-            {items?.map((item: IItem) => (
-              <div
-                key={item?.id}
-                className="flex flex-col md:flex-row overflow-hidden rounded-lg shadow-lg"
-              >
-                <motion.img
-                  loading="lazy"
-                  variants={galleryAnimation}
-                  initial="hidden"
-                  animate="visible"
-                  whileHover="hover"
-                  src={item.image || DEFAULT_IMAGE_URL}
-                  alt={item.image ? "Lost Item" : "Default Lost Item Image"}
-                  className="w-48 h-48 md:h-auto object-cover"
-                />
-                <div className="flex flex-col md:flex-row w-full">
-                  <div className="p-4 md:w-2/3">
-                    <h3 className="text-2xl font-bold text-teal-600">
-                      {item.foundItemName}
-                    </h3>
-                    <p className="mt-2">
-                      <strong>Category:</strong> {item.category}
-                    </p>
-                    <p className="mt-2">
-                      <strong>Location:</strong> {item.location}
-                    </p>
-                    <p className="mt-2">
-                      <strong>Lost Date:</strong> {item.date}
-                    </p>
-                    <p className="mt-2">
-                      <strong>Description:</strong> {item.description}
-                    </p>
-                    <div className="card-actions justify-end">
-                      <p className="mt-2 text-red-500 font-bold">
-                        <strong>STATUS:</strong> {item.status}
+            {items
+              ?.slice()
+              .reverse()
+              .map((item: IItem) => (
+                <div
+                  key={item?.id}
+                  className="flex flex-col md:flex-row overflow-hidden rounded-lg shadow-lg"
+                >
+                  <motion.img
+                    loading="lazy"
+                    variants={galleryAnimation}
+                    initial="hidden"
+                    animate="visible"
+                    whileHover="hover"
+                    src={item.image || DEFAULT_IMAGE_URL}
+                    alt={item.image ? "Lost Item" : "Default Lost Item Image"}
+                    className="w-48 h-48 md:h-auto object-cover"
+                  />
+                  <div className="flex flex-col md:flex-row w-full">
+                    <div className="p-4 md:w-2/3">
+                      <h3 className="text-2xl font-bold text-teal-600">
+                        {item.foundItemName}
+                      </h3>
+                      <p className="mt-2">
+                        <strong>Id:</strong> {item.id}
+                      </p>
+                      <p className="mt-2">
+                        <strong>Category:</strong> {item.category}
+                      </p>
+                      <p className="mt-2">
+                        <strong>Location:</strong> {item.location}
+                      </p>
+                      <p className="mt-2">
+                        <strong>Lost Date:</strong> {item.date}
+                      </p>
+                      <p className="mt-2">
+                        <strong>Description:</strong> {item.description}
+                      </p>
+                      <div className="card-actions justify-end">
+                        <p className="mt-2 text-red-500 font-bold">
+                          <strong>STATUS:</strong> {item.status}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="p-4 md:w-1/3 border-t md:border-t-0 md:border-l border-gray-200">
+                      <h3 className="text-xl font-bold text-teal-600">
+                        Contact Info
+                      </h3>
+                      <p className="mt-2">
+                        <strong>Name:</strong> {item?.user?.name}
+                      </p>
+                      <p className="mt-2">
+                        <strong>Email:</strong> {item.email}
+                      </p>
+                      <p className="mt-2">
+                        <strong>Phone:</strong> {item.phoneNumber}
                       </p>
                     </div>
                   </div>
-                  <div className="p-4 md:w-1/3 border-t md:border-t-0 md:border-l border-gray-200">
-                    <h3 className="text-xl font-bold text-teal-600">
-                      Contact Info
-                    </h3>
-                    <p className="mt-2">
-                      <strong>Name:</strong> {item?.user?.name}
-                    </p>
-                    <p className="mt-2">
-                      <strong>Email:</strong> {item.email}
-                    </p>
-                    <p className="mt-2">
-                      <strong>Phone:</strong> {item.phoneNumber}
-                    </p>
+                  <div className="gap-5 p-5 m-5">
+                    <motion.button
+                      variants={buttonAnimation}
+                      whileHover="hover"
+                      onClick={() => handleDeleteClick(item)}
+                      className="btn-lg btn btn-active mb-5 btn-accent text-black"
+                    >
+                      <FaTrashAlt className="mr-2" /> Delete
+                    </motion.button>
+                    <motion.button
+                      variants={buttonAnimation}
+                      whileHover="hover"
+                      onClick={() => handleUpdateClick(item)}
+                      className="btn-lg btn btn-active btn-accent mt-5 text-black"
+                    >
+                      <FaEdit className="mr-2" /> Update
+                    </motion.button>
                   </div>
                 </div>
-                <div className="gap-5 p-5 m-5">
-                  <motion.button
-                    variants={buttonAnimation}
-                    whileHover="hover"
-                    onClick={() => handleDeleteClick(item)}
-                    className="btn-lg btn btn-active mb-5 btn-accent text-black"
-                  >
-                    <FaTrashAlt className="mr-2" /> Delete
-                  </motion.button>
-                  <motion.button
-                    variants={buttonAnimation}
-                    whileHover="hover"
-                    onClick={() => handleUpdateClick(item)}
-                    className="btn-lg btn btn-active btn-accent mt-5 text-black"
-                  >
-                    <FaEdit className="mr-2" /> Update
-                  </motion.button>
-                </div>
-              </div>
-            ))}
+              ))}
           </div>
         ) : (
           <div className="text-center  mt-40  text-3xl  font-bold ">
             No Report Found. You Are Not Adding Any Found Info Report
           </div>
         )}
-      </div>
+      </div>{" "}
     </Container>
   );
 };

@@ -33,12 +33,6 @@ const SideBar = () => {
         component={Link}
         href="/"
       >
-        <Image
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRbK3ODNpVWims22stgrOVbC0V6XJlCvH3HWMfE9bRiWA2TUXvIDEEDdA4i7JHB5onGkQ&usqp=CAU"
-          width={40}
-          height={40}
-          alt="logo"
-        />
         <Typography
           variant="h6"
           component="h1"
@@ -46,7 +40,7 @@ const SideBar = () => {
             cursor: "pointer",
           }}
         >
-          web site
+          Lost<span className="text-teal-700 ">Locator</span>
         </Typography>
       </Stack>
       <List>

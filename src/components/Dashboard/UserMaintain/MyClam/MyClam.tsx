@@ -154,64 +154,73 @@ const MyClam: React.FC = () => {
         <SectionTitle subHeading="My Clam Info" heading="Clam Report" />
         {items?.length > 0 ? (
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 ">
-            {items?.map((item) => (
-              <div
-                key={item?.id}
-                className="  bg-gradient-to-r from-purple-500 to-pink-500                  shadow-md rounded-lg overflow-hidden"
-              >
-                <motion.img
-                  loading="lazy"
-                  variants={galleryAnimation}
-                  initial="hidden"
-                  animate="visible"
-                  whileHover="hover"
-                  src={item?.foundItem?.image || DEFAULT_IMAGE_URL}
-                  alt={item.image ? "Lost Item" : "Default Lost Item Image"}
-                  className="w-full h-52  mt object-cover"
-                />
-                <div className="p-6">
-                  <h3 className="text-2xl font-bold text-white mb-2">
-                    Found Item ID: {item.foundItemId}
-                  </h3>
-                  <p className="mb-2">
-                    <strong>Item Name: {item?.foundItem?.foundItemName}</strong>
-                  </p>
-                  <p className="mb-2">
-                    <strong>Date:</strong> {item.lostDate}
-                  </p>
-                  <p className="mb-2">
-                    <strong>Description:</strong> {item.distinguishingFeatures}
-                  </p>
-                  <h3 className="text-xl font-bold text-white mt-4">
-                    Contact Info
-                  </h3>
-                  <p className="mb-2">
-                    <strong>Phone Number:</strong>{" "}
-                    {item?.foundItem?.phoneNumber}
-                  </p>
-                  <div className="card-actions justify-end">
-                    <p className="  font-bold">
-                      <strong>STATUS:</strong>{" "}
-                      <span className=" text-white">{item.status}</span>
+            {items
+              ?.slice()
+              .reverse()
+              .map((item) => (
+                <div
+                  key={item?.id}
+                  className="  bg-gradient-to-r from-purple-500 to-pink-500                  shadow-md rounded-lg overflow-hidden"
+                >
+                  <motion.img
+                    loading="lazy"
+                    variants={galleryAnimation}
+                    initial="hidden"
+                    animate="visible"
+                    whileHover="hover"
+                    src={item?.foundItem?.image || DEFAULT_IMAGE_URL}
+                    alt={item.image ? "Lost Item" : "Default Lost Item Image"}
+                    className="w-full h-52  mt object-cover"
+                  />
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold text-white mb-2">
+                      Use this id create Your clam
+                    </h3>
+                    <h3 className="text-xl font-bold text-white mb-2">
+                      Found Item ID: {item.foundItemId}
+                    </h3>
+                    <p className="mb-2">
+                      <strong>
+                        Item Name: {item?.foundItem?.foundItemName}
+                      </strong>
                     </p>
-                  </div>
-                  <div className="flex justify-end space-x-4 mt-4">
-                    <motion.button
-                      onClick={() => handleDeleteClick(item)}
-                      className="btn text-white bg-black  hover:bg-black    hover:text-white    flex items-center"
-                    >
-                      <FaTrashAlt className="mr-2" /> Delete
-                    </motion.button>
-                    <motion.button
-                      onClick={() => handleUpdateClick(item)}
-                      className="btn text-white bg-black  hover:bg-black    hover:text-white         flex items-center"
-                    >
-                      <FaEdit className="mr-2" /> Update
-                    </motion.button>
+                    <p className="mb-2">
+                      <strong>Date:</strong> {item.lostDate}
+                    </p>
+                    <p className="mb-2">
+                      <strong>Description:</strong>{" "}
+                      {item.distinguishingFeatures}
+                    </p>
+                    <h3 className="text-xl font-bold text-white mt-4">
+                      Contact Info
+                    </h3>
+                    <p className="mb-2">
+                      <strong>Phone Number:</strong>{" "}
+                      {item?.foundItem?.phoneNumber}
+                    </p>
+                    <div className="card-actions justify-end">
+                      <p className="  font-bold">
+                        <strong>STATUS:</strong>{" "}
+                        <span className=" text-white">{item.status}</span>
+                      </p>
+                    </div>
+                    <div className="flex justify-end space-x-4 mt-4">
+                      <motion.button
+                        onClick={() => handleDeleteClick(item)}
+                        className="btn text-white bg-black  hover:bg-black    hover:text-white    flex items-center"
+                      >
+                        <FaTrashAlt className="mr-2" /> Delete
+                      </motion.button>
+                      <motion.button
+                        onClick={() => handleUpdateClick(item)}
+                        className="btn text-white bg-black  hover:bg-black    hover:text-white         flex items-center"
+                      >
+                        <FaEdit className="mr-2" /> Update
+                      </motion.button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
           </div>
         ) : (
           <div className="text-center mt-40 text-3xl font-bold">

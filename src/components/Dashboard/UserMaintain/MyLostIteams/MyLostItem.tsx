@@ -174,7 +174,8 @@ const MyLostItem: React.FC = () => {
         <SectionTitle subHeading="MY LOST ITEMS" heading="Lost Report" />
         {items?.length > 0 ? (
           <div className="grid grid-cols-1 gap-4">
-            {items?.map((item: IItem) => (
+            {items?.slice()
+              .reverse().map((item: IItem) => (
               <div
                 key={item?.id}
                 className="flex flex-col md:flex-row overflow-hidden rounded-lg shadow-lg"

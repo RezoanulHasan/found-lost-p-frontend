@@ -1,6 +1,6 @@
 import React from "react";
 import { BsHeartFill } from "react-icons/bs";
-import { AiOutlineHeart } from "react-icons/ai";
+
 const ParallaxSection: React.FC = () => {
   return (
     <div

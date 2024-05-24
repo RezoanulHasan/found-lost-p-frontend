@@ -6,7 +6,7 @@ const page: React.FC = () => {
   return (
     <div>
       <AllFound></AllFound>
-      <div className="divider  bg-black"></div>
+      <div className="divider  bg-teal-500"></div>
       <Alllost></Alllost>
     </div>
   );

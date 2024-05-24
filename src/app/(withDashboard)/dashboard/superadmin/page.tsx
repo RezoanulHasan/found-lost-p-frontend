@@ -1,7 +1,9 @@
-const SuperAdminPage = () => {
+import WelcomeDashboard from "@/components/Dashboard/WelcomeDashboard";
+
+const SuperAdminPage: React.FC = () => {
   return (
     <div>
-      <h1> SuperAdmin PAGE</h1>
+      <WelcomeDashboard></WelcomeDashboard>
     </div>
   );
 };

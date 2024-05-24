@@ -18,9 +18,7 @@ const Navbar: React.FC = () => {
       <li>
         <Link href="/aboutMore">About Us</Link>
       </li>
-      <li>
-        <Link href="/support">Support</Link>
-      </li>
+
       <li>
         <Link href="/dashboard">My Profile</Link>
       </li>

@@ -1,7 +1,9 @@
-const AdminInfoPage = () => {
+import WelcomeDashboard from "@/components/Dashboard/WelcomeDashboard";
+
+const AdminInfoPage: React.FC = () => {
   return (
     <div>
-      <h1>ADMIN PAGE</h1>
+      <WelcomeDashboard></WelcomeDashboard>
     </div>
   );
 };

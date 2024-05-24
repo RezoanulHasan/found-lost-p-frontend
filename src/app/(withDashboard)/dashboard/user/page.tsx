@@ -1,8 +1,9 @@
+import WelcomeDashboard from "@/components/Dashboard/WelcomeDashboard";
 
-const UserPage = () => {
+const UserPage: React.FC = () => {
   return (
     <div>
-      <h1> USER PAGE</h1>
+      <WelcomeDashboard></WelcomeDashboard>
     </div>
   );
 };

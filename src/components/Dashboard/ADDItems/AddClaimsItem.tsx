@@ -60,7 +60,7 @@ const AddClaimsItem: React.FC = () => {
         <div className="card w-full lg:w-1/2 md:w-[70%] shadow-xl bg-base-100">
           <form onSubmit={handleSubmit(onSubmit)} className="card-body">
             <h2 className="text-2xl font-bold text-teal-600 text-center mb-1">
-              Go to Your Find Item page and use foundItemId to create claim
+              Go to MyFoundItem page and use foundItemId to create claim
             </h2>
 
             <div className="form-control">

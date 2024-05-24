@@ -1,4 +1,5 @@
 "use client";
+import { Fade } from "react-awesome-reveal";
 import SectionTitle from "@/components/shared/SectionTitle/SectionTitle";
 // components/Tips.js
 import {
@@ -51,25 +52,27 @@ const tips = [
 const Tips: React.FC = () => {
   return (
     <>
-      <SectionTitle subHeading="Tips for Reporting Items" heading="Tips" />
-      <section className="py-4 bg-white">
-        <div className="container mx-auto px-4 text-center">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {tips.map((tip, index) => (
-              <div
-                key={index}
-                className="p-6 bg-gray-50 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
-              >
-                <div className="flex justify-center mb-4 text-teal-600">
-                  <tip.icon className="text-4xl" />
+      <Fade direction="down">
+        <SectionTitle subHeading="Tips for Reporting Items" heading="Tips" />
+        <section className="py-4 bg-white">
+          <div className="container mx-auto px-4 text-center">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {tips.map((tip, index) => (
+                <div
+                  key={index}
+                  className="p-6 bg-gray-50 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
+                >
+                  <div className="flex justify-center mb-4 text-teal-600">
+                    <tip.icon className="text-4xl" />
+                  </div>
+                  <h3 className="font-semibold text-xl mb-4">{tip.title}</h3>
+                  <p>{tip.content}</p>
                 </div>
-                <h3 className="font-semibold text-xl mb-4">{tip.title}</h3>
-                <p>{tip.content}</p>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>{" "}
+      </Fade>
     </>
   );
 };

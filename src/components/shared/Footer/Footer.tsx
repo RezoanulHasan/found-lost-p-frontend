@@ -72,7 +72,7 @@ const Footer = () => {
               {" "}
               Lost<span className="text-teal-600 ">Locator</span>
             </h3>
-            <p className="mb-2">© 2025 Lost & Found. All rights reserved.</p>
+            <p className="mb-2">© 2025 LostLocator. All rights reserved.</p>
             <p>Powered by Rezoanul Hasan.</p>
           </div>
         </div>

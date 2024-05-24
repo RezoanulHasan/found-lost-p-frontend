@@ -1,7 +1,9 @@
-const DashboardHomePage = () => {
+import WelcomeDashboard from "@/components/Dashboard/WelcomeDashboard";
+
+const DashboardHomePage: React.FC = () => {
   return (
     <div>
-      <h1>Welcome to dashboard</h1>
+      <WelcomeDashboard></WelcomeDashboard>
     </div>
   );
 };

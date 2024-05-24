@@ -68,7 +68,7 @@ export default function DashboardDrawer({
         sx={{
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           ml: { sm: `${drawerWidth}px` },
-          background: "#F4F7FE",
+          background: "#158F15",
           boxShadow: 0,
           borderBottom: "1px solid #ddd",
           py: 1,
@@ -93,26 +93,16 @@ export default function DashboardDrawer({
             }}
           >
             <Box>
-              <Typography
-                variant="body2"
-                noWrap
-                component="div"
-                sx={{ color: "rgba(11, 17, 52, 0.6)" }}
-              >
-                Hi, {isLoading ? "Loading..." : user?.name},
+              <Typography variant="body2" noWrap component="div">
+                Hi, {isLoading ? "Loading..." : user?.name}
               </Typography>
-              <Typography
-                variant="h6"
-                noWrap
-                component="div"
-                sx={{ color: "primary.main" }}
-              >
-                Welcome to
+              <Typography variant="h6" noWrap component="div">
+                <h1 className="text-white"> Welcome to You Dashboard</h1>
               </Typography>
             </Box>
             <Stack direction="row" gap={3}>
               <Badge badgeContent={1} color="primary">
-                <IconButton sx={{ background: "#ffffff" }}>
+                <IconButton sx={{ background: "#F4F7FE" }}>
                   <NotificationsNoneIcon color="action" />
                 </IconButton>
               </Badge>

@@ -1,9 +1,9 @@
-import ChangePassword from "./ChangePassword";
 import React from "react";
+import AllClaimsReport from "./AllClaimsReport";
 const page: React.FC = () => {
   return (
     <div>
-      <ChangePassword></ChangePassword>
+      <AllClaimsReport></AllClaimsReport>
     </div>
   );
 };

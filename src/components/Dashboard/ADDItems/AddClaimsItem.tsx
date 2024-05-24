@@ -1,11 +1,9 @@
 /* eslint-disable react/no-children-prop */
 "use client";
-
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
-
 import useTitle from "@/components/Hooks/useTitle";
 import SectionTitle from "@/components/shared/SectionTitle/SectionTitle";
 import Container from "@/components/shared/Container/Container";
@@ -21,12 +19,7 @@ export type TClaimsData = {
 const AddClaimsItem: React.FC = () => {
   useTitle("Add Found Item");
 
-  const {
-    data: response,
-    refetch,
-    isError,
-    isLoading,
-  } = useGetSingleByUserClamQuery({
+  const { refetch } = useGetSingleByUserClamQuery({
     sortBy: "createdAt",
     sortOrder: "asc",
   });
@@ -47,6 +40,8 @@ const AddClaimsItem: React.FC = () => {
           title: "Report Added Successfully",
           text: res.message,
           icon: "success",
+        }).then(() => {
+          router.push("/allClaimsReport");
         });
         await refetch();
       } else {

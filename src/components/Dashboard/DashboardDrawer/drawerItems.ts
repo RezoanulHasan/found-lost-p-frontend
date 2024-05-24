@@ -12,6 +12,8 @@ import KeyIcon from "@mui/icons-material/Key";
 import AddBoxIcon from "@mui/icons-material/AddBox";
 import ReportIcon from "@mui/icons-material/Report";
 import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
+
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
 export const drawerItems = (role: UserRole): DrawerItem[] => {
   const roleMenus: DrawerItem[] = [];
   const defaultMenus = [
@@ -67,6 +69,11 @@ export const drawerItems = (role: UserRole): DrawerItem[] => {
           title: "Activity Monitoring",
           path: `${role}/motion`,
           icon: ReviewsIcon,
+        },
+        {
+          title: "All Recent Items",
+          path: `${role}/allrecentitems`,
+          icon: AccessTimeIcon,
         }
       );
       break;

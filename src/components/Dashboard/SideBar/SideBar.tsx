@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Box, List, Stack, Typography } from "@mui/material";
-import Image from "next/image";
 
 import Link from "next/link";
 import { UserRole } from "@/types";

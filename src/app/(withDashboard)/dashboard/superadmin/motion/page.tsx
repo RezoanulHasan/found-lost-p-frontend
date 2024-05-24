@@ -8,4 +8,4 @@ const page: React.FC = () => {
   );
 };
 
-export default page;
+export default page ;

@@ -48,8 +48,8 @@ export interface IItem {
   id: any;
   userId?: string;
   category: string;
-  lostItemName?: string;
-  foundItemName?: string;
+  lostItemName: string;
+  foundItemName: string;
   description: string;
   location: string;
   date: string; // You might want to use Date type or define a custom date format
@@ -79,4 +79,14 @@ export interface IFoundItem {
   userId?: string;
   lostItemName?: string;
   foundItemName?: string;
+}
+
+export interface IClams {
+  foundItem: IFoundItem;
+  lostDate?: string;
+  foundItemId?: string;
+  distinguishingFeatures?: string;
+
+  id?: any;
+  userId?: string;
 }

@@ -85,7 +85,7 @@ const FoundReport: React.FC = () => {
             whileHover="hover"
             className="btn-lg btn btn-active btn-accent text-white"
           >
-            See All Lost Report
+            See All Found Report
           </motion.button>
         </Link>
 

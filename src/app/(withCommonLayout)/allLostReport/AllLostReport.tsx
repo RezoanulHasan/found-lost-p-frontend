@@ -6,7 +6,7 @@ import { useGetAllLostQuery } from "@/redux/features/auth/lostApi";
 import { IItem } from "@/types/common";
 import { motion } from "framer-motion";
 import SectionTitle from "@/components/shared/SectionTitle/SectionTitle";
-import { galleryAnimation } from "@/components/Hooks/GallerySection";
+
 import useTitle from "@/components/Hooks/useTitle";
 
 const DEFAULT_IMAGE_URL =
@@ -25,93 +25,221 @@ const AllLostReport: React.FC = () => {
 
   const [items, setItems] = useState<IItem[]>([]);
 
+  const [filters, setFilters] = useState({
+    itemName: "",
+    category: "",
+    location: "",
+    date: "",
+    status: "",
+  });
+
   useEffect(() => {
     if (!isLoading && response && Array.isArray(response.data)) {
       setItems(response.data);
     }
   }, [response, isLoading]);
 
-  if (isLoading) return <div>Loading...</div>;
-  if (isError || !Array.isArray(items)) {
-    console.error("Error loading data or invalid data format", response);
-    return <div>Error loading data. Please try again later.</div>;
+  const handleFilterChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const { name, value } = event.target;
+    setFilters((prevFilters) => ({
+      ...prevFilters,
+      [name]: value,
+    }));
+  };
+
+  const filteredItems = items.filter((item) => {
+    return (
+      item.lostItemName
+        .toLowerCase()
+        .includes(filters.itemName.toLowerCase()) &&
+      item.category.toLowerCase().includes(filters.category.toLowerCase()) &&
+      item.location.toLowerCase().includes(filters.location.toLowerCase()) &&
+      item.date.toLowerCase().includes(filters.date.toLowerCase()) &&
+      item.status.toLowerCase().includes(filters.status.toLowerCase())
+    );
+  });
+
+  if (isLoading) {
+    return (
+      <Container>
+        <div className="flex justify-center items-center min-h-screen">
+          <p>Loading...</p>
+        </div>
+      </Container>
+    );
+  }
+
+  if (isError) {
+    console.error("Error loading data:", response);
+    return (
+      <Container>
+        <div className="flex justify-center items-center min-h-screen">
+          <p>Error loading data. Please try again later.</p>
+        </div>
+      </Container>
+    );
   }
 
   return (
     <Container>
-      <div className="mt-32">
-        <SectionTitle subHeading="All Lost Report" heading="Lost Report" />
-        <div className="grid grid-cols-1  gap-4">
-          {items.length > 0 ? (
-            items
-              .slice()
-              .reverse()
-              .map((item: IItem) => (
-                <div
-                  key={item.id}
-                  className="flex flex-col md:flex-row overflow-hidden rounded-lg shadow-lg"
-                >
-                  <motion.img
-                    loading="lazy"
-                    variants={galleryAnimation}
-                    initial="hidden"
-                    animate="visible"
-                    whileHover="hover"
-                    src={item.image || DEFAULT_IMAGE_URL}
-                    alt={item.image ? "Lost Item" : "Default Lost Item Image"}
-                    className="w-48  h-48 md:h-auto object-cover"
-                  />
-                  <div className="flex flex-col md:flex-row w-full">
-                    <div className="p-4 md:w-2/3">
-                      <h3 className="text-2xl font-bold text-teal-600">
-                        {item.lostItemName}
-                      </h3>
-                      <p className="mt-2">
-                        <strong>Category:</strong> {item.category}
-                      </p>
+      <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="col-span-1">
+          <div className="bg-white mt-36  p-4 rounded-md shadow-md">
+            <SectionTitle subHeading="Filter " heading="Items" />
+            <div className="flex flex-col gap-4">
+              <select
+                name="itemName"
+                onChange={handleFilterChange}
+                className="p-2 border rounded-md"
+              >
+                <option value="">Item Name</option>
+                {Array.from(
+                  new Set(items.map((item) => item.lostItemName))
+                ).map((name) => (
+                  <option key={name} value={name}>
+                    {name}
+                  </option>
+                ))}
+              </select>
+              <select
+                name="category"
+                value={filters.category}
+                onChange={handleFilterChange}
+                className="p-2 border rounded-md"
+              >
+                <option value="">Category</option>
+                {Array.from(new Set(items.map((item) => item.category))).map(
+                  (category) => (
+                    <option key={category} value={category}>
+                      {category}
+                    </option>
+                  )
+                )}
+              </select>
+              <select
+                name="location"
+                value={filters.location}
+                onChange={handleFilterChange}
+                className="p-2 border rounded-md"
+              >
+                <option value="">Location</option>
+                {Array.from(new Set(items.map((item) => item.location))).map(
+                  (location) => (
+                    <option key={location} value={location}>
+                      {location}
+                    </option>
+                  )
+                )}
+              </select>
 
-                      <p className="mt-2">
-                        <strong>Location:</strong> {item.location}
-                      </p>
-                      <p className="mt-2">
-                        <strong>LostDate:</strong> {item.date}
-                      </p>
-                      <p className="mt-2">
-                        <strong>Description:</strong> {item.description}
-                      </p>
-                      <div className="card-actions justify-end">
-                        <p className="mt-2 text-red-500 font-bold">
-                          <strong>STATUS:</strong> {item.status}
-                        </p>
-                      </div>
-                    </div>
-                    <div className="p-4 md:w-1/3 border-t md:border-t-0 md:border-l border-gray-200">
-                      <h3 className="text-xl font-bold text-teal-600">
-                        Contact User Info
-                      </h3>
-                      <p className="mt-2">
-                        <strong>Name:</strong> {item.user.name}
-                      </p>
-                      <p className="mt-2">
-                        <strong>Email:</strong> {item.email}
-                      </p>
+              <select
+                name="date"
+                value={filters.date}
+                onChange={handleFilterChange}
+                className="p-2 border rounded-md"
+              >
+                <option value="">Date</option>
+                {Array.from(new Set(items.map((item) => item.date))).map(
+                  (date) => (
+                    <option key={date} value={date}>
+                      {date}
+                    </option>
+                  )
+                )}
+              </select>
 
-                      <p className="mt-2">
-                        <strong>Phone:</strong> {item.phoneNumber}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              ))
-          ) : (
-            <div className="text-center  mt-40  text-3xl  font-bold ">
-              No Report Found. No Data About Adding Any Lost Info Report
+              <select
+                name="status"
+                value={filters.status}
+                onChange={handleFilterChange}
+                className="p-2 border rounded-md"
+              >
+                <option value="">Status</option>
+                {["LOST", "FOUND"].map((status) => (
+                  <option key={status} value={status}>
+                    {status}
+                  </option>
+                ))}
+              </select>
             </div>
-          )}
+          </div>
+        </div>
+        <div className="col-span-2">
+          <div className="bg-white p-4 rounded-md shadow-md">
+            <SectionTitle
+              subHeading="Found Report"
+              heading="All Found Report"
+            />
+            <div className="overflow-x-auto">
+              <table className="min-w-full bg-white border border-gray-200">
+                <thead>
+                  <tr className="bg-gray-100 border-b">
+                    <th className="px-4 py-2">Image</th>
+                    <th className="px-4 py-2">Item Name</th>
+                    <th className="px-4 py-2">Category</th>
+                    <th className="px-4 py-2">Location</th>
+                    <th className="px-4 py-2">Date</th>
+                    <th className="px-4 py-2">Description</th>
+                    <th className="px-4 py-2">Status</th>
+                    <th className="px-4 py-2">Contact Info</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {filteredItems.length > 0 ? (
+                    filteredItems
+                      .slice()
+                      .reverse()
+                      .map((item: IItem) => (
+                        <tr key={item?.id} className="border-b">
+                          <td className="px-4 py-2">
+                            <motion.img
+                              src={item.image || DEFAULT_IMAGE_URL}
+                              alt={
+                                item.image
+                                  ? "Found Item"
+                                  : "Default Found Item Image"
+                              }
+                              className="w-16 h-16 object-cover"
+                            />
+                          </td>
+                          <td className="px-4 py-2">{item.foundItemName}</td>
+                          <td className="px-4 py-2">{item.category}</td>
+                          <td className="px-4 py-2">{item.location}</td>
+                          <td className="px-4 py-2">{item.date}</td>
+                          <td className="px-4 py-2">{item.description}</td>
+                          <td className="px-4 py-2 text-red-500 font-bold">
+                            {item.status}
+                          </td>
+                          <td className="px-4 py-2">
+                            <p>
+                              <strong>Name:</strong> {item.user.name}
+                            </p>
+                            <p>
+                              <strong>Email:</strong> {item.email}
+                            </p>
+                            <p>
+                              <strong>Phone:</strong> {item.phoneNumber}
+                            </p>
+                          </td>
+                        </tr>
+                      ))
+                  ) : (
+                    <tr>
+                      <td
+                        colSpan={8}
+                        className="text-center py-8 text-3xl font-bold"
+                      >
+                        No matching reports found.
+                      </td>
+                    </tr>
+                  )}
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
     </Container>
   );
 };
-
 export default AllLostReport;

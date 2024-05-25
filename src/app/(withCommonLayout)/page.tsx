@@ -9,6 +9,7 @@ import Banner from "@/components/UI/HomePage/HeroSection/Banner";
 import ParallaxSection from "@/components/UI/HomePage/HeroSection/ParallaxSection";
 import Review from "@/components/UI/HomePage/HeroSection/Review";
 import TeamMember from "@/components/UI/HomePage/HeroSection/TeamMember";
+import Contact from "@/components/UI/HomePage/HeroSection/Contact/Contact";
 
 const HomePage = () => {
   return (
@@ -27,6 +28,7 @@ const HomePage = () => {
         <Different></Different>
 
         <Review></Review>
+        <Contact></Contact>
       </Container>
     </>
   );

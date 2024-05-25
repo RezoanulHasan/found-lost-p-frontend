@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { Fade } from "react-awesome-reveal";
 import { motion } from "framer-motion";
 import { FaEnvelope, FaBriefcase, FaUser } from "react-icons/fa";
-const TeamMember = () => {
+const TeamMember: React.FC = () => {
   const items = [
     {
       id: "1",

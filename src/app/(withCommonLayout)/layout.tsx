@@ -13,7 +13,7 @@ const CommonLayout = async ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen">{children}</div>
+      <div className="min-h-screen overflow-hidden">{children}</div>
       <Footer />
     </>
   );

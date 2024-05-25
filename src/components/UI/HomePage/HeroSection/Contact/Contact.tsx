@@ -68,19 +68,22 @@ const Contact: React.FC = () => {
             </div>
           </div>
         </Fade>
-        <Fade direction="right">
-          <div className="contact-right text-teal-500 mt-20 mb-5 mx-10">
-            <motion.img
-              loading="lazy"
-              variants={galleryAnimation}
-              initial="hidden"
-              animate="visible"
-              whileHover="hover"
-              src="https://i.ibb.co/sWwHkvN/depositphotos-210842946-stock-illustration-customer-service-icon.webp"
-              className="w-full h-full  mt object-cover"
-            />
-          </div>{" "}
-        </Fade>
+
+        <div className="overflow-hidden">
+          <Fade direction="right">
+            <div className="contact-right text-teal-500 mt-20 mb-5 mx-10">
+              <motion.img
+                loading="lazy"
+                variants={galleryAnimation}
+                initial="hidden"
+                animate="visible"
+                whileHover="hover"
+                src="https://i.ibb.co/sWwHkvN/depositphotos-210842946-stock-illustration-customer-service-icon.webp"
+                className="w-full h-full  mt object-cover"
+              />
+            </div>{" "}
+          </Fade>
+        </div>
       </div>
     </div>
   );

@@ -166,10 +166,7 @@ const AllLostReport: React.FC = () => {
         </div>
         <div className="col-span-2">
           <div className="bg-white p-4 rounded-md shadow-md">
-            <SectionTitle
-              subHeading="Found Report"
-              heading="All Found Report"
-            />
+            <SectionTitle subHeading="Lost Report" heading="All Lost Report" />
             <div className="overflow-x-auto">
               <table className="min-w-full bg-white border border-gray-200">
                 <thead>

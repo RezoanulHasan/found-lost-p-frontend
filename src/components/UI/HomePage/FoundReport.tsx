@@ -41,7 +41,7 @@ const FoundReport: React.FC = () => {
 
   return (
     <div>
-      <SectionTitle subHeading="Recent Lost Report" heading="Lost Report" />
+      <SectionTitle subHeading="Recent Found Report" heading="Found Report" />
       <div className="grid grid-cols-1 sm:grid-cols-3   md:grid-cols-4 lg:grid-cols-5 gap-4">
         {items?.map((item: IItem) => (
           <div key={item?.id} className="overflow-hidden rounded-lg shadow-lg">

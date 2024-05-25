@@ -8,19 +8,22 @@ import Different from "@/components/UI/HomePage/HeroSection/Different";
 import Banner from "@/components/UI/HomePage/HeroSection/Banner";
 import ParallaxSection from "@/components/UI/HomePage/HeroSection/ParallaxSection";
 import Review from "@/components/UI/HomePage/HeroSection/Review";
+import TeamMember from "@/components/UI/HomePage/HeroSection/TeamMember";
 
 const HomePage = () => {
   return (
     <>
       <Banner></Banner>
       <Container>
+        <AboutUs></AboutUs>
         <LostReport></LostReport>
 
         <HeroSection />
         <FoundReport></FoundReport>
         <Tips></Tips>
-        <AboutUs></AboutUs>
+
         <ParallaxSection></ParallaxSection>
+        <TeamMember></TeamMember>
         <Different></Different>
 
         <Review></Review>

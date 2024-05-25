@@ -10,6 +10,8 @@ import {
   galleryAnimation,
 } from "@/components/Hooks/GallerySection";
 
+import Spinner from "@/components/shared/Spinner/Spinner";
+
 const LostReport: React.FC = () => {
   const {
     data: response,
@@ -32,7 +34,7 @@ const LostReport: React.FC = () => {
     }
   }, [response, isLoading]);
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <Spinner></Spinner>;
   if (isError || !Array.isArray(items)) {
     console.error("Error loading data or invalid data format", response);
     return <div>Error loading data or invalid data format</div>;

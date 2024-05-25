@@ -13,8 +13,6 @@ import { Fade } from "react-awesome-reveal";
 import SectionTitle from "@/components/shared/SectionTitle/SectionTitle";
 import { motion } from "framer-motion";
 
-// types/review.ts
-
 export interface Review {
   id: string;
   name: string;

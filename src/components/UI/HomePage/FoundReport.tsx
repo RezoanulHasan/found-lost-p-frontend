@@ -10,6 +10,7 @@ import {
 } from "@/components/Hooks/GallerySection";
 import SectionTitle from "@/components/shared/SectionTitle/SectionTitle";
 import { useGetAllFoundQuery } from "@/redux/features/auth/foundApi";
+import Spinner from "@/components/shared/Spinner/Spinner";
 
 const FoundReport: React.FC = () => {
   const {
@@ -33,7 +34,7 @@ const FoundReport: React.FC = () => {
     }
   }, [response, isLoading]);
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <Spinner></Spinner>;
   if (isError || !Array.isArray(items)) {
     console.error("Error loading data or invalid data format", response);
     return <div>Error loading data or invalid data format</div>;

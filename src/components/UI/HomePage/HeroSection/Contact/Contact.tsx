@@ -23,7 +23,7 @@ const Contact: React.FC = () => {
     <div className="container mx-auto px-3 overflow-hidden  sm:px-5">
       <div className="py-16 sm:py-24">
         <div className="text-left border-l-4 border-teal-500 pl-3">
-          <h2 className="font-bold text-2xl sm:text-4xl">Reach Out to Us</h2>
+          <h2 className="font-bold text-2xl sm:text-4xl">Reach Out Us</h2>
           <p className="font-medium text-lg mt-2 text-teal-500">
             Let's Connect
           </p>
@@ -60,7 +60,7 @@ const Contact: React.FC = () => {
             </div>
             <div>
               <h2 className="text-3xl font-medium mb-8 pb-3 border-b-2 text-teal-600">
-                Send Us Messag
+                Send Us Message
               </h2>
               <div>
                 <ContactForm></ContactForm>
@@ -69,7 +69,7 @@ const Contact: React.FC = () => {
           </div>
         </Fade>
 
-        <div className="overflow-hidden">
+        <div className="">
           <Fade direction="right">
             <div className="contact-right text-teal-500 mt-20 mb-5 mx-10">
               <motion.img

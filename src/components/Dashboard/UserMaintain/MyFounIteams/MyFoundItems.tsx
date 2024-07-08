@@ -15,11 +15,17 @@ import { FaTrashAlt, FaEdit } from "react-icons/fa";
 import { useGetSingleByUserFoundQuery } from "@/redux/features/MyLostFoundClamApi ";
 import { useDeleteFoundItemMutation } from "@/redux/features/auth/foundApi";
 import { tagTypesList } from "@/redux/tag-types";
-
+import Spinner from "@/components/shared/Spinner/Spinner";
+import { useDebounced } from "@/redux/helper";
 const DEFAULT_IMAGE_URL =
   "https://banner2.cleanpng.com/20180704/sgs/kisspng-computer-icons-action-item-icon-design-clip-art-5b3d4ff37b7642.7302069315307448195057.jpg";
 
 const MyFoundItems: React.FC = () => {
+  useTitle("My Found Report");
+  const [searchTerm, setSearchTerm] = useState<string>("");
+
+  const debouncedTerm = useDebounced({ searchQuery: searchTerm, delay: 600 });
+
   const {
     data: response,
     refetch,
@@ -28,11 +34,10 @@ const MyFoundItems: React.FC = () => {
   } = useGetSingleByUserFoundQuery({
     sortBy: "createdAt",
     sortOrder: "asc",
+    searchTerm: debouncedTerm,
   });
 
   const [items, setItems] = useState<IItem[]>([]);
-
-  useTitle("My Found Report");
 
   const [deleteUserMutation] = useDeleteFoundItemMutation();
 
@@ -150,7 +155,7 @@ const MyFoundItems: React.FC = () => {
     }
   }, [response, isLoading]);
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <Spinner></Spinner>;
   if (isError || !Array.isArray(items)) {
     console.error("Error loading data or invalid data format", response);
     return <div>Error loading data. Please try again later.</div>;
@@ -160,6 +165,17 @@ const MyFoundItems: React.FC = () => {
     <Container>
       <div className="mt-5">
         <SectionTitle subHeading="MY FOUND ITEMS" heading="Found Report" />
+        <div className="card-actions justify-center">
+          <div className="flex justify-start lg:justify-end md:justify-end xl:justify-end items-center mt-4 mb-5">
+            <input
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="appearance-none border mb-10  border-teal-700 rounded-md py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:border-indigo-500"
+              placeholder="Search items by-name,location,category"
+              style={{ minWidth: "20rem" }}
+            />
+          </div>
+        </div>
+
         {items?.length > 0 ? (
           <div className="grid grid-cols-1 gap-4">
             {items
@@ -244,7 +260,7 @@ const MyFoundItems: React.FC = () => {
           </div>
         ) : (
           <div className="text-center  mt-40  text-3xl  font-bold ">
-            No Report Found. You Are Not Adding Any Found Info Report
+            No Report Found. 
           </div>
         )}
       </div>{" "}

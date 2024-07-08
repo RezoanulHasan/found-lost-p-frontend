@@ -4,17 +4,24 @@ import { Box, List, Stack, Typography } from "@mui/material";
 import Link from "next/link";
 import { UserRole } from "@/types";
 import SidebarItem from "./SidebarItem";
-
 import { useEffect, useState } from "react";
 import { getUserInfo } from "@/utils/auth/auth.services";
 import { drawerItems } from "../DashboardDrawer/drawerItems";
-import { User } from "@/redux/features/auth/userApi";
+//import { User } from "@/redux/features/auth/userApi";
+
+interface TInfo {
+  email: string;
+  role: string; // Assuming role can only be "USER". If there are other roles, you can use a union type, e.g., "USER" | "ADMIN".
+  userId: string;
+  iat: any;
+  exp: any;
+}
 
 const SideBar = () => {
   const [userRole, setUserRole] = useState("");
 
   useEffect(() => {
-    const { role } = getUserInfo() as User;
+    const { role } = getUserInfo() as TInfo;
     setUserRole(role || (userRole as UserRole));
   }, []);
 
@@ -43,7 +50,7 @@ const SideBar = () => {
         </Typography>
       </Stack>
       <List>
-        {drawerItems(userRole as UserRole).map((item, index) => (
+        {drawerItems(userRole as UserRole)?.map((item, index) => (
           <SidebarItem key={index} item={item} />
         ))}
       </List>

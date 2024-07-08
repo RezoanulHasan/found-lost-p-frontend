@@ -1,6 +1,6 @@
 "use server";
 
-import { UserData } from "@/app/register/page";
+import { UserData } from "@/app/register/RegisterPage";
 
 export const registerUser = async (data: UserData) => {
   const res = await fetch(

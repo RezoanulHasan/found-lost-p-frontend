@@ -7,11 +7,16 @@ import { IItem } from "@/types/common";
 import { useGetAllFoundQuery } from "@/redux/features/auth/foundApi";
 import { motion } from "framer-motion";
 import useTitle from "@/components/Hooks/useTitle";
+import { useDebounced } from "@/redux/helper";
 
 const DEFAULT_IMAGE_URL =
   "https://banner2.cleanpng.com/20180704/sgs/kisspng-computer-icons-action-item-icon-design-clip-art-5b3d4ff37b7642.7302069315307448195057.jpg";
 
 const ALLFoundReport: React.FC = () => {
+  useTitle("All Found Report");
+  const [searchTerm, setSearchTerm] = useState<string>("");
+
+  const debouncedTerm = useDebounced({ searchQuery: searchTerm, delay: 600 });
   const {
     data: response,
     isError,
@@ -19,8 +24,9 @@ const ALLFoundReport: React.FC = () => {
   } = useGetAllFoundQuery({
     sortBy: "createdAt",
     sortOrder: "asc",
+    searchTerm: debouncedTerm,
   });
-  useTitle("All Found Report");
+
   const [items, setItems] = useState<IItem[]>([]);
   const [filters, setFilters] = useState({
     itemName: "",
@@ -167,6 +173,15 @@ const ALLFoundReport: React.FC = () => {
               subHeading="Found Report"
               heading="All Found Report"
             />
+            <div className="flex justify-start lg:justify-end md:justify-end xl:justify-end items-center mt-4 mb-5">
+              <input
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="appearance-none border mb-10  border-teal-700 rounded-md py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:border-indigo-500"
+                placeholder="Search items by-name,location,category"
+                style={{ minWidth: "20rem" }}
+              />
+            </div>
+
             <div className="overflow-x-auto">
               <table className="min-w-full bg-white border border-gray-200">
                 <thead>

@@ -33,8 +33,8 @@ const Navbar: React.FC = () => {
         className=" progress-bar   "
       />
 
-      <div className="navbar fixed z-100 top-0 bg-opacity-30 bg-base-100  shadow-sm    mx-auto">
-        <div className="navbar-start">
+      <div className=" navbar fixed  z-100 top-0 bg-opacity-30 bg-base-100  shadow-sm    mx-auto">
+        <div className="navbar-start ">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
               <svg
@@ -54,16 +54,16 @@ const Navbar: React.FC = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-black text-white rounded-box w-52"
+              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow  text-2xl bg-black text-white rounded-box w-52"
             >
               {navOptions}
             </ul>
           </div>
-          <Link href="/" className="btn btn-ghost text-xl">
+          <Link href="/" className="btn btn-ghost text-2xl">
             Lost<span className="text-teal-600 ">Locator</span>
           </Link>
         </div>
-        <div className="navbar-center hidden lg:flex">
+        <div className="navbar-center hidden lg:flex text-2xl">
           <ul className="menu menu-horizontal px-1">{navOptions}</ul>
         </div>
         <div className="navbar-end">

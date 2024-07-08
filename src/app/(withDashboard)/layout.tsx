@@ -1,19 +1,11 @@
-"use client";
-import DashboardDrawer from "@/components/Dashboard/DashboardDrawer/DashboardDrawer";
-//import Spinner from "@/components/shared/Spinner/Spinner";
-import { isLoggedIn } from "@/utils/auth/auth.services";
-import { useRouter } from "next/navigation";
+import DashboardLayout from "./DashboardLayout";
 
-const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
-  const router = useRouter();
-
-  // Redirect if user is not logged in
-  if (!isLoggedIn()) {
-    router.push("/login");
-    // Or render a loading spinner
-  }
-
-  return <DashboardDrawer>{children}</DashboardDrawer>;
+const Layout = ({ children }: { children: React.ReactNode }) => {
+  return (
+    <>
+      <DashboardLayout>{children}</DashboardLayout>
+    </>
+  );
 };
 
-export default DashboardLayout;
+export default Layout;

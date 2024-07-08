@@ -1,7 +1,7 @@
 "use client";
 import { Fade } from "react-awesome-reveal";
 import SectionTitle from "@/components/shared/SectionTitle/SectionTitle";
-// components/Tips.js
+
 import {
   FaInfoCircle,
   FaCamera,
@@ -10,7 +10,7 @@ import {
   FaMapMarkerAlt,
   FaClock,
 } from "react-icons/fa";
-
+import { motion } from "framer-motion";
 const tips = [
   {
     title: "Be Descriptive",
@@ -54,27 +54,29 @@ const Tips: React.FC = () => {
     <>
       <Fade direction="down">
         <SectionTitle subHeading="Tips for Reporting Items" heading="Tips" />
-        <section className="py-4 bg-white">
-          <div className="container mx-auto px-4 text-center">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {tips.map((tip, index) => (
-                <div
-                  key={index}
-                  className="p-6 bg-gray-50 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
-                >
-                  <div className="flex justify-center mb-4 text-teal-600">
-                    <tip.icon className="text-4xl" />
-                  </div>
-                  <h3 className="font-semibold text-xl mb-4">{tip.title}</h3>
-                  <p>{tip.content}</p>
+      </Fade>
+      <Fade direction="right">
+        {/* Left side content */}
+        <div className="col-span-2">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {tips.slice(0, 6).map((tip, index) => (
+              <div
+                key={index}
+                className="p-6 bg-gray-50 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 border-2 border-teal-700"
+              >
+                <div className="flex justify-center mb-4 text-teal-600">
+                  <tip.icon className="text-4xl" />
                 </div>
-              ))}
-            </div>
+                <h3 className="font-semibold text-xl mb-4">{tip.title}</h3>
+                <p>{tip.content}</p>
+              </div>
+            ))}
           </div>
-        </section>{" "}
+        </div>
+
+        {/* Right side image */}
       </Fade>
     </>
   );
 };
-
 export default Tips;

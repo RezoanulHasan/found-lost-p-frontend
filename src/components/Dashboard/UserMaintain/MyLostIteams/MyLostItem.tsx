@@ -16,12 +16,16 @@ import useTitle from "@/components/Hooks/useTitle";
 import { FaTrashAlt, FaEdit } from "react-icons/fa";
 import { useDeleteLostItemMutation } from "@/redux/features/auth/lostApi";
 import { tagTypesList } from "@/redux/tag-types";
+import Spinner from "@/components/shared/Spinner/Spinner";
+import { useDebounced } from "@/redux/helper";
 const DEFAULT_IMAGE_URL =
   "https://banner2.cleanpng.com/20180704/sgs/kisspng-computer-icons-action-item-icon-design-clip-art-5b3d4ff37b7642.7302069315307448195057.jpg";
 
 const MyLostItem: React.FC = () => {
   useTitle("My Lost Report");
+  const [searchTerm, setSearchTerm] = useState<string>("");
 
+  const debouncedTerm = useDebounced({ searchQuery: searchTerm, delay: 600 });
   const {
     data: response,
     refetch,
@@ -30,6 +34,7 @@ const MyLostItem: React.FC = () => {
   } = useGetSingleByUserLostQuery({
     sortBy: "createdAt",
     sortOrder: "asc",
+    searchTerm: debouncedTerm,
   });
 
   const [items, setItems] = useState<IItem[]>([]);
@@ -162,7 +167,7 @@ const MyLostItem: React.FC = () => {
     }
   }, [response, isLoading]);
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <Spinner></Spinner>;
   if (isError || !Array.isArray(items)) {
     console.error("Error loading data or invalid data format", response);
     return <div>Error loading data. Please try again later.</div>;
@@ -172,88 +177,100 @@ const MyLostItem: React.FC = () => {
     <Container>
       <div className="mt-5">
         <SectionTitle subHeading="MY LOST ITEMS" heading="Lost Report" />
+        <div className="card-actions justify-center">
+          <div className="flex justify-start lg:justify-end md:justify-end xl:justify-end items-center mt-4 mb-5">
+            <input
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="appearance-none border mb-10 border-teal-700 rounded-md py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:border-indigo-500"
+              placeholder="Search items by-name,location,category"
+              style={{ minWidth: "20rem" }}
+            />
+          </div>
+        </div>
         {items?.length > 0 ? (
           <div className="grid grid-cols-1 gap-4">
-            {items?.slice()
-              .reverse().map((item: IItem) => (
-              <div
-                key={item?.id}
-                className="flex flex-col md:flex-row overflow-hidden rounded-lg shadow-lg"
-              >
-                <motion.img
-                  loading="lazy"
-                  variants={galleryAnimation}
-                  initial="hidden"
-                  animate="visible"
-                  whileHover="hover"
-                  src={item?.image || DEFAULT_IMAGE_URL}
-                  alt={item.image ? "Lost Item" : "Default Lost Item Image"}
-                  className="w-48  h-48 md:h-auto object-cover"
-                />
-                <div className="flex flex-col md:flex-row w-full">
-                  <div className="p-4 md:w-2/3">
-                    <h3 className="text-2xl font-bold text-teal-600">
-                      {item.foundItemName}
-                    </h3>
-                    <p className="mt-2">
-                      <strong>Category:</strong> {item?.category}
-                    </p>
+            {items
+              ?.slice()
+              .reverse()
+              .map((item: IItem) => (
+                <div
+                  key={item?.id}
+                  className="flex flex-col md:flex-row overflow-hidden rounded-lg shadow-lg"
+                >
+                  <motion.img
+                    loading="lazy"
+                    variants={galleryAnimation}
+                    initial="hidden"
+                    animate="visible"
+                    whileHover="hover"
+                    src={item?.image || DEFAULT_IMAGE_URL}
+                    alt={item.image ? "Lost Item" : "Default Lost Item Image"}
+                    className="w-48  h-48 md:h-auto object-cover"
+                  />
+                  <div className="flex flex-col md:flex-row w-full">
+                    <div className="p-4 md:w-2/3">
+                      <h3 className="text-2xl font-bold text-teal-600">
+                        {item.foundItemName}
+                      </h3>
+                      <p className="mt-2">
+                        <strong>Category:</strong> {item?.category}
+                      </p>
 
-                    <p className="mt-2">
-                      <strong>Location:</strong> {item?.location}
-                    </p>
-                    <p className="mt-2">
-                      <strong>LostDate:</strong> {item?.date}
-                    </p>
-                    <p className="mt-2">
-                      <strong>Description:</strong> {item?.description}
-                    </p>
-                    <div className="card-actions justify-end">
-                      <p className="mt-2 text-red-500 font-bold">
-                        <strong>STATUS:</strong> {item?.status}
+                      <p className="mt-2">
+                        <strong>Location:</strong> {item?.location}
+                      </p>
+                      <p className="mt-2">
+                        <strong>LostDate:</strong> {item?.date}
+                      </p>
+                      <p className="mt-2">
+                        <strong>Description:</strong> {item?.description}
+                      </p>
+                      <div className="card-actions justify-end">
+                        <p className="mt-2 text-red-500 font-bold">
+                          <strong>STATUS:</strong> {item?.status}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="p-4 md:w-1/3 border-t md:border-t-0 md:border-l border-gray-200">
+                      <h3 className="text-xl font-bold text-teal-600">
+                        Contact User Info
+                      </h3>
+                      <p className="mt-2">
+                        <strong>Name:</strong> {item?.user?.name}
+                      </p>
+                      <p className="mt-2">
+                        <strong>Email:</strong> {item?.email}
+                      </p>
+
+                      <p className="mt-2">
+                        <strong>Phone:</strong> {item?.phoneNumber}
                       </p>
                     </div>
                   </div>
-                  <div className="p-4 md:w-1/3 border-t md:border-t-0 md:border-l border-gray-200">
-                    <h3 className="text-xl font-bold text-teal-600">
-                      Contact User Info
-                    </h3>
-                    <p className="mt-2">
-                      <strong>Name:</strong> {item?.user?.name}
-                    </p>
-                    <p className="mt-2">
-                      <strong>Email:</strong> {item?.email}
-                    </p>
-
-                    <p className="mt-2">
-                      <strong>Phone:</strong> {item?.phoneNumber}
-                    </p>
+                  <div className="gap-5 p-5 m-5">
+                    <motion.button
+                      variants={buttonAnimation}
+                      whileHover="hover"
+                      onClick={() => handleDeleteClick(item)}
+                      className="btn-lg btn btn-active mb-5 btn-accent text-black"
+                    >
+                      <FaTrashAlt className="mr-2" /> Delete
+                    </motion.button>
+                    <motion.button
+                      variants={buttonAnimation}
+                      whileHover="hover"
+                      onClick={() => handleUpdateClick(item)}
+                      className="btn-lg btn btn-active btn-accent mt-5 text-black"
+                    >
+                      <FaEdit className="mr-2" /> Update
+                    </motion.button>
                   </div>
                 </div>
-                <div className="gap-5 p-5 m-5">
-                  <motion.button
-                    variants={buttonAnimation}
-                    whileHover="hover"
-                    onClick={() => handleDeleteClick(item)}
-                    className="btn-lg btn btn-active mb-5 btn-accent text-black"
-                  >
-                    <FaTrashAlt className="mr-2" /> Delete
-                  </motion.button>
-                  <motion.button
-                    variants={buttonAnimation}
-                    whileHover="hover"
-                    onClick={() => handleUpdateClick(item)}
-                    className="btn-lg btn btn-active btn-accent mt-5 text-black"
-                  >
-                    <FaEdit className="mr-2" /> Update
-                  </motion.button>
-                </div>
-              </div>
-            ))}
+              ))}
           </div>
         ) : (
           <div className="text-center  mt-40  text-3xl  font-bold ">
-            No Report Found. You Are Not Adding Any Lost Info Report
+            No Report Found.
           </div>
         )}
       </div>

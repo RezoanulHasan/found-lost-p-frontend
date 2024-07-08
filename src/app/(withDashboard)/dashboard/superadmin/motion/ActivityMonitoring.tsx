@@ -1,17 +1,31 @@
 "use client";
+// pages/index.tsx or your relevant page/component
+import React, { useState, useEffect } from "react";
 import useTitle from "@/components/Hooks/useTitle";
 import SectionTitle from "@/components/shared/SectionTitle/SectionTitle";
-import React, { useState, useEffect } from "react";
+import ActivityChart from "./ActivityChart";
 import {
   RiUserLine,
   RiFileListLine,
   RiShoppingBasketLine,
   RiSearchLine,
 } from "react-icons/ri";
+import Spinner from "@/components/shared/Spinner/Spinner";
+
+interface Counts {
+  users: number;
+  claims: number;
+  lostItems: number;
+  foundItems: number;
+}
 
 const ActivityMonitoring: React.FC = () => {
-  const [counts, setCounts] = useState<any>(null);
+  const [counts, setCounts] = useState<Counts | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+
   useTitle("Activity Monitoring");
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -22,10 +36,12 @@ const ActivityMonitoring: React.FC = () => {
           const data = await response.json();
           setCounts(data.data);
         } else {
-          console.error("Failed to fetch data:", response.statusText);
+          setError("Failed to fetch data: " + response.statusText);
         }
       } catch (error) {
-        console.error("Error fetching data:", error);
+        setError("Error fetching data: ");
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -38,30 +54,48 @@ const ActivityMonitoring: React.FC = () => {
 
       <SectionTitle
         subHeading="Activity Monitoring Dashboard"
-        heading=" Report"
+        heading="Report"
       />
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
-        <DashboardCard
-          icon={<RiUserLine className="w-8 h-8 text-blue-500" />}
-          title="Users"
-          count={counts?.users || 0}
-        />
-        <DashboardCard
-          icon={<RiFileListLine className="w-8 h-8 text-green-500" />}
-          title="Claims"
-          count={counts?.claims || 0}
-        />
-        <DashboardCard
-          icon={<RiShoppingBasketLine className="w-8 h-8 text-yellow-500" />}
-          title="Lost Items"
-          count={counts?.lostItems || 0}
-        />
-        <DashboardCard
-          icon={<RiSearchLine className="w-8 h-8 text-red-500" />}
-          title="Found Items"
-          count={counts?.foundItems || 0}
-        />
-      </div>
+      {loading ? (
+        <Spinner></Spinner>
+      ) : error ? (
+        <div className="text-center text-red-500">{error}</div>
+      ) : (
+        <div>
+          <div className="">
+            <ActivityChart
+              foundItems={counts?.foundItems || 0}
+              lostItems={counts?.lostItems || 0}
+              claims={counts?.claims || 0}
+            />
+          </div>
+
+          <div className="grid grid-cols-1 mt-10 md:grid-cols-2 lg:grid-cols-2 gap-4">
+            <DashboardCard
+              icon={<RiUserLine className="w-8 h-8 text-blue-500" />}
+              title="Users"
+              count={counts?.users || 0}
+            />
+            <DashboardCard
+              icon={<RiFileListLine className="w-8 h-8 text-green-500" />}
+              title="Claims"
+              count={counts?.claims || 0}
+            />
+            <DashboardCard
+              icon={
+                <RiShoppingBasketLine className="w-8 h-8 text-yellow-500" />
+              }
+              title="Lost Items"
+              count={counts?.lostItems || 0}
+            />
+            <DashboardCard
+              icon={<RiSearchLine className="w-8 h-8 text-red-500" />}
+              title="Found Items"
+              count={counts?.foundItems || 0}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 };

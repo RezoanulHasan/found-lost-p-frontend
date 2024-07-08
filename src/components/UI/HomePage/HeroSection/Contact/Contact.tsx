@@ -71,14 +71,23 @@ const Contact: React.FC = () => {
 
         <div className="">
           <Fade direction="right">
-            <div className="contact-right text-teal-500 mt-20 mb-5 mx-10">
+            <div className="contact-right text-teal-500 mt-10 mb-5 mx-10">
               <motion.img
                 loading="lazy"
                 variants={galleryAnimation}
                 initial="hidden"
                 animate="visible"
                 whileHover="hover"
-                src="https://i.ibb.co/sWwHkvN/depositphotos-210842946-stock-illustration-customer-service-icon.webp"
+                src="https://i.ibb.co/HqQB8ng/customer-service-level.png"
+                className="w-full h-full  mt object-cover"
+              />
+
+              <motion.img
+                loading="lazy"
+                initial="hidden"
+                animate="visible"
+                whileHover="hover"
+                src="https://i.ibb.co/JHGdCFZ/customer-support-flat-design-illustration-23-2148889374.jpg"
                 className="w-full h-full  mt object-cover"
               />
             </div>{" "}

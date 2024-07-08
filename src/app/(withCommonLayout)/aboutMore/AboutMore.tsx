@@ -33,7 +33,7 @@ const AboutMore = () => {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {/* Mission */}
-          <div className="p-6 bg-gray-100 rounded-lg shadow-md flex items-center">
+          <div className="p-6 bg-gray-100 rounded-lg shadow-md flex items-center border-2 border-teal-700  hover:border-black">
             <FaBullseye className=" text-teal-500 mr-4      text-9xl" />
             <div>
               <h3 className="text-2xl font-semibold mb-4">Our Mission</h3>
@@ -45,7 +45,7 @@ const AboutMore = () => {
             </div>
           </div>
           {/* Vision */}
-          <div className="p-6 bg-gray-100 rounded-lg shadow-md flex items-center">
+          <div className="p-6 bg-gray-100 rounded-lg shadow-md flex items-center   border-2 border-teal-700  hover:border-black">
             <FaEye className="text-9xl text-teal-500  mr-4" />
             <div>
               <h3 className="text-2xl font-semibold mb-4">Our Vision</h3>
@@ -57,7 +57,7 @@ const AboutMore = () => {
             </div>
           </div>
           {/* History */}
-          <div className="p-6 bg-gray-100 rounded-lg shadow-md flex items-center">
+          <div className="p-6 bg-gray-100 rounded-lg shadow-md flex items-center  border-2 border-teal-700  hover:border-black">
             <FaHistory className="text-9xl text-teal-500  mr-4" />
             <div>
               <h3 className="text-2xl font-semibold mb-4">Our History</h3>
@@ -70,7 +70,8 @@ const AboutMore = () => {
             </div>
           </div>
           {/* Services */}
-          <div className="p-6 bg-gray-100 rounded-lg shadow-md flex items-center">
+
+          <div className="p-6 bg-gray-100 rounded-lg shadow-md flex items-center  border-2 border-teal-700  hover:border-black">
             <FaListAlt className="text-6xl text-teal-500  mr-4" />
             <div>
               <h3 className="text-2xl font-semibold mb-4">Our Services</h3>
@@ -84,7 +85,7 @@ const AboutMore = () => {
           </div>
 
           {/* Commitment */}
-          <div className="p-6 bg-gray-100 rounded-lg shadow-md flex items-center">
+          <div className="p-6 bg-gray-100 rounded-lg shadow-md flex items-center  border-2 border-teal-700  hover:border-black">
             <FaUserFriends className="text-9xl text-teal-500 mr-4" />
             <div>
               <h3 className="text-2xl font-semibold mb-4">Our Commitment</h3>
@@ -95,7 +96,7 @@ const AboutMore = () => {
             </div>
           </div>
           {/* Impact */}
-          <div className="p-6 bg-gray-100 rounded-lg shadow-md flex items-center">
+          <div className="p-6 bg-gray-100 rounded-lg shadow-md flex items-center border-2 border-teal-700  hover:border-black">
             <FaHandshake className="text-9xl text-teal-500  mr-4" />
             <div>
               <h3 className="text-2xl font-semibold mb-4">Our Impact</h3>
@@ -107,7 +108,7 @@ const AboutMore = () => {
           </div>
 
           {/* Heart */}
-          <div className="p-6 bg-gray-100 rounded-lg shadow-md flex items-center">
+          <div className="p-6 bg-gray-100 rounded-lg shadow-md flex items-center  border-2 border-teal-700  hover:border-black">
             <FaHeart className="text-9xl text-teal-500 mr-4" />
             <div>
               <h3 className="text-2xl font-semibold mb-4">Our Passion</h3>
@@ -119,7 +120,7 @@ const AboutMore = () => {
           </div>
 
           {/* Comments */}
-          <div className="p-6 bg-gray-100 rounded-lg shadow-md flex items-center">
+          <div className="p-6 bg-gray-100 rounded-lg shadow-md flex items-center  border-2 border-teal-700  hover:border-black">
             <FaComments className="text-9xl text-teal-500  mr-4" />
             <div>
               <h3 className="text-2xl font-semibold mb-4">User Feedback</h3>
@@ -131,7 +132,7 @@ const AboutMore = () => {
           </div>
 
           {/* Financial Security */}
-          <div className="p-6 bg-gray-100 rounded-lg shadow-md flex items-center">
+          <div className="p-6 bg-gray-100 rounded-lg shadow-md flex items-center  border-2 border-teal-700  hover:border-black">
             <FaMoneyBillWave
               className="text-9xl text-teal-500 mr-4
 "

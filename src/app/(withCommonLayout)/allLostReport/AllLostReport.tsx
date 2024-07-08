@@ -8,12 +8,18 @@ import { motion } from "framer-motion";
 import SectionTitle from "@/components/shared/SectionTitle/SectionTitle";
 
 import useTitle from "@/components/Hooks/useTitle";
+import { useDebounced } from "@/redux/helper";
 
 const DEFAULT_IMAGE_URL =
   "https://banner2.cleanpng.com/20180704/sgs/kisspng-computer-icons-action-item-icon-design-clip-art-5b3d4ff37b7642.7302069315307448195057.jpg";
 
 const AllLostReport: React.FC = () => {
   useTitle("All Lost Report");
+
+  const [searchTerm, setSearchTerm] = useState<string>("");
+
+  const debouncedTerm = useDebounced({ searchQuery: searchTerm, delay: 600 });
+
   const {
     data: response,
     isError,
@@ -21,6 +27,7 @@ const AllLostReport: React.FC = () => {
   } = useGetAllLostQuery({
     sortBy: "createdAt",
     sortOrder: "asc",
+    searchTerm: debouncedTerm,
   });
 
   const [items, setItems] = useState<IItem[]>([]);
@@ -167,6 +174,15 @@ const AllLostReport: React.FC = () => {
         <div className="col-span-2">
           <div className="bg-white p-4 rounded-md shadow-md">
             <SectionTitle subHeading="Lost Report" heading="All Lost Report" />
+
+            <div className="flex justify-start lg:justify-end md:justify-end xl:justify-end items-center mt-4 mb-5">
+              <input
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="appearance-none border mb-10   border-teal-700 rounded-md py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:border-indigo-500"
+                placeholder="Search items by-name,location,category"
+                style={{ minWidth: "20rem" }}
+              />
+            </div>
             <div className="overflow-x-auto">
               <table className="min-w-full bg-white border border-gray-200">
                 <thead>
@@ -199,7 +215,7 @@ const AllLostReport: React.FC = () => {
                               className="w-16 h-16 object-cover"
                             />
                           </td>
-                          <td className="px-4 py-2">{item.foundItemName}</td>
+                          <td className="px-4 py-2">{item?.lostItemName}</td>
                           <td className="px-4 py-2">{item.category}</td>
                           <td className="px-4 py-2">{item.location}</td>
                           <td className="px-4 py-2">{item.date}</td>

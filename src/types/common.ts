@@ -86,7 +86,13 @@ export interface IClams {
   lostDate?: string;
   foundItemId?: string;
   distinguishingFeatures?: string;
-
   id?: any;
   userId?: string;
+}
+export interface TInfo {
+  email: string;
+  role: string; // Assuming role can only be "USER". If there are other roles, you can use a union type, e.g., "USER" | "ADMIN".
+  userId: string;
+  iat?: any;
+  exp?: any;
 }

@@ -74,6 +74,21 @@ export const drawerItems = (role: UserRole): DrawerItem[] => {
           title: "All Recent Items",
           path: `${role}/allrecentitems`,
           icon: AccessTimeIcon,
+        },
+        {
+          title: "MyLosTItem",
+          path: `${role}/lostItems`,
+          icon: SearchIcon,
+        },
+        {
+          title: "MyFoundItems",
+          path: `${role}/foundItems`,
+          icon: CheckCircleIcon,
+        },
+        {
+          title: "MyClamItems",
+          path: `${role}/clamItems`,
+          icon: AssignmentTurnedInIcon,
         }
       );
       break;

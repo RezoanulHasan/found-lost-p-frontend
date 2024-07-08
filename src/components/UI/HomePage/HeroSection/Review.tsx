@@ -68,39 +68,45 @@ const Review: React.FC = () => {
   const [reviews, setReviews] = useState<Review[]>(initialReviews);
 
   return (
-    <section className="my-10">
-      <Fade direction="down">
-        <SectionTitle subHeading="What Our Client Say" heading="Testimonials" />
-
-        <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
-          {reviews?.map((review) => (
-            <SwiperSlide key={review?.id}>
-              <div className="flex flex-col items-center mx-24 my-16">
-                <FaQuoteLeft className="text-3xl text-red-500 mb-1" />
-                <Rating
-                  style={{ maxWidth: 150 }}
-                  value={review.star}
-                  readOnly
-                />
-                <p className="mt-10 text-xl text-center md:w-2/3">
-                  {review.review}
-                </p>
-                <div>
-                  <div className="avatar mt-2">
-                    <div className="w-20 rounded-full">
-                      <motion.img src={review.image} alt={review.name} />
+    <>
+      <section className="my-10">
+        <Fade direction="down">
+          <SectionTitle
+            subHeading="What Our Client Say"
+            heading="Testimonials"
+          />
+        </Fade>
+        <Fade direction="right">
+          <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
+            {reviews?.map((review) => (
+              <SwiperSlide key={review?.id}>
+                <div className="flex flex-col items-center mx-24 my-16">
+                  <FaQuoteLeft className="text-3xl text-red-500 mb-1" />
+                  <Rating
+                    style={{ maxWidth: 150 }}
+                    value={review.star}
+                    readOnly
+                  />
+                  <p className="mt-10 text-xl text-center md:w-2/3">
+                    {review.review}
+                  </p>
+                  <div>
+                    <div className="avatar mt-2">
+                      <div className="w-20 rounded-full">
+                        <motion.img src={review.image} alt={review.name} />
+                      </div>
                     </div>
+                    <h3 className="text-xl font-medium text-teal-500 mt-2">
+                      {review.name}
+                    </h3>
                   </div>
-                  <h3 className="text-xl font-medium text-teal-500 mt-2">
-                    {review.name}
-                  </h3>
                 </div>
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </Fade>
-    </section>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </Fade>
+      </section>
+    </>
   );
 };
 

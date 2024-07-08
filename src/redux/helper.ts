@@ -11,7 +11,7 @@ type TDebouncedProps = {
   searchQuery: string;
   delay: number;
 };
-
+//serch funsonlity
 export const useDebounced = ({ searchQuery, delay }: TDebouncedProps) => {
   const [debouncedValue, setDebouncedValue] = useState<string>(searchQuery);
 

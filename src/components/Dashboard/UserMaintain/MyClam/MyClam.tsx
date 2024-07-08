@@ -15,11 +15,16 @@ import { FaTrashAlt, FaEdit } from "react-icons/fa";
 import Swal from "sweetalert2";
 import { useGetSingleByUserClamQuery } from "@/redux/features/MyLostFoundClamApi ";
 import { tagTypesList } from "@/redux/tag-types";
-
+import Spinner from "@/components/shared/Spinner/Spinner";
+import { useDebounced } from "@/redux/helper";
 const DEFAULT_IMAGE_URL =
   "https://banner2.cleanpng.com/20180704/sgs/kisspng-computer-icons-action-item-icon-design-clip-art-5b3d4ff37b7642.7302069315307448195057.jpg";
 
 const MyClam: React.FC = () => {
+  useTitle("My Clam");
+  const [searchTerm, setSearchTerm] = useState<string>("");
+
+  const debouncedTerm = useDebounced({ searchQuery: searchTerm, delay: 600 });
   const {
     data: response,
     refetch,
@@ -28,11 +33,12 @@ const MyClam: React.FC = () => {
   } = useGetSingleByUserClamQuery({
     sortBy: "createdAt",
     sortOrder: "asc",
+    searchTerm: debouncedTerm,
   });
 
   const [items, setItems] = useState<IItem[]>([]);
 
-  useTitle("My Clam");
+
 
   const [deleteUserMutation] = useDeleteClaimMutation();
 
@@ -143,7 +149,7 @@ const MyClam: React.FC = () => {
   }, [response, isLoading]);
   console.log(response);
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <Spinner></Spinner>;
   if (isError || !Array.isArray(items)) {
     console.error("Error loading data or invalid data format", response);
     return <div>Error loading data. Please try again later.</div>;
@@ -152,6 +158,16 @@ const MyClam: React.FC = () => {
     <Container>
       <div className="mt-10">
         <SectionTitle subHeading="My Clam Info" heading="Clam Report" />
+        <div className="card-actions justify-center">
+          <div className="flex justify-start lg:justify-end md:justify-end xl:justify-end items-center mt-4 mb-5">
+            <input
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="appearance-none border mb-10  border-teal-700 rounded-md py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:border-indigo-500"
+              placeholder="Search items by-name,location,category"
+              style={{ minWidth: "20rem" }}
+            />
+          </div>
+        </div>
         {items?.length > 0 ? (
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 ">
             {items
@@ -224,7 +240,7 @@ const MyClam: React.FC = () => {
           </div>
         ) : (
           <div className="text-center mt-40 text-3xl font-bold">
-            No items found. You have not added any reports.
+            No items found. 
           </div>
         )}
       </div>

@@ -1,6 +1,6 @@
 import UpdateUserInfoPage from "@/components/Dashboard/UserMaintain/profileUpdate/UpdateUserInfoPage";
 
-const AdminUpdateUserInfo: React.FC = () => {
+const UpdateUserInfo: React.FC = () => {
   return (
     <div>
       <UpdateUserInfoPage></UpdateUserInfoPage>
@@ -8,4 +8,4 @@ const AdminUpdateUserInfo: React.FC = () => {
   );
 };
 
-export default AdminUpdateUserInfo;
+export default UpdateUserInfo;
